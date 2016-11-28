@@ -1,0 +1,43 @@
+<div class="col s12 m12 l12">
+  <p id="notice"><%= notice %></p>
+</div>
+<div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
+<div class="col s12 m8 l8" style="">  
+  <div class="col s12 m12 l12">
+    <div style="">
+      <%= image_tag(@entry.image,:class=>'responsive-img center') %>
+    </div>
+    <div class="col s12 m6 l6">
+      Caption : <%= @entry.caption %>
+    </div>
+    <div class="col s12 m6 l6" style="text-align:right">
+      <%= pluralize(@entry.votes.count, "vote") %> |
+      <%= link_to 'Upvote', upvote_entry_path(@entry),:class=>"btn btn-small waves", method: :post %>
+      <!--Votes : <%= @entry.votes %>-->
+    </div>
+    <div class="col s12 m6 l6">
+      Participant Name : <%= @entry.caption %>
+    </div>
+    <div class="col s12 m6 l6" style="text-align:right">
+      Shares : <%= @entry.shares %>
+    </div>
+  </div>
+</div>
+<div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
+<div class="col s12 m12 l12">
+  <div class="center" style="margin-bottom:2%;">
+    <h5><span class='heading'>Related</span></h5>
+  </div>
+  <div class="col m3 l3">
+    <%= image_tag(@entry.uploaded_image, :class=>"relatedimg") %>
+  </div>
+  <div class="col m3 l3">
+    <%= image_tag(@entry.uploaded_image, :class=>"relatedimg") %>
+  </div>
+  <div class="col m3 l3">
+    <%= image_tag(@entry.uploaded_image, :class=>"relatedimg") %>
+  </div>
+  <div class="col m3 l3">
+    <%= image_tag(@entry.uploaded_image, :class=>"relatedimg") %>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+<%= form_for(@contest, html: {class: "custom-form"}) do |f| %>
+  <% if @contest.errors.any? %>
+    <div class="col s12 m12 l12">
+      <div id="error_explanation">
+        <h2><%= pluralize(@contest.errors.count, "error") %> prohibited this contest from being saved:</h2>
+
+        <ul>
+        <% @contest.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+<div class="form-horizontal">
+  <div class="form-group">
+    <%= f.label :contest_type,:class=>"control-label col m3 l3" %>
+    <div class="col m6 l6">
+      <%= f.select :contest_type,['Mega','Monthly','Weekly'],:class=>"form-control" %>
+    </div>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
+    <%= f.label :image, "Upload Banner",:class=>"control-label col m3 l3" %>
+    <%= f.file_field :image,:class=>"col m6 l6" %>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
+    <%= f.label :title,:class=>"control-label col m3 l3" %>
+    <%= f.text_field :title,:class=>"form-control col m6 l6" %>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
+    <%= f.label :description,:class=>"control-label col m3 l3" %>
+    <%= f.text_area :description,:class=>"form-control col m6 l6",:size =>"20x10" %>
+    <span class="info">(HTML format accepted.)</span>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
+    <%= f.label :steps,:class=>"control-label col m3 l3" %>
+    <%= f.text_area :steps,:class=>"form-control col m6 l6",:size =>"20x10" %>
+    <span class="info">(HTML format accepted.)</span>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
+    <%= f.label :first_prize,:class=>"control-label col m3 l3" %>
+    <%= f.text_field :first_prize,:class=>"form-control col m6 l6" %>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
+    <%= f.label :second_prize,:class=>"control-label col m3 l3" %>
+    <%= f.text_field :second_prize,:class=>"form-control col m6 l6" %>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
+    <%= f.label :third_prize,:class=>"control-label col m3 l3" %>
+    <%= f.text_field :third_prize,:class=>"form-control col m6 l6" %>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
+    <%= f.label :status,:class=>"control-label col m3 l3" %>
+    <div class="col m6 l6">
+      <%= f.select :status,['Active','UpComing','Completed','Suspended'],:class=>"form-control" %>
+    </div>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
+    <%= f.label :suspension_reason,:class=>"control-label col m3 l3" %>
+    <div class="col m6 l6">
+      <%= f.select :suspension_reason,['Select Reason','Cancelled by Sponsors'],:class=>"form-control" %>
+    </div>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="col s6 m6 l6">
+    <div class="form-group">
+      <%= f.label :start_date %>
+      <%= f.date_select :start_date %>
+    </div>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="col s6 m6 l6">
+    <div class="form-group">
+      <%= f.label :end_date %>
+      <%= f.date_select :end_date %>
+      <span class="col m3 l3">&nbsp;</span>
+    </div>
+  </div>
+  <div class="actions center">
+    <%= f.submit "Add Contents",:class=>"btn waves-effect waves-light" %>
+  </div>
+  <div class="right">
+    <%= link_to 'Show', @contest %> |
+    <%= link_to 'Back', contests_path %>
+  </div>
+</div>
+<% end %>

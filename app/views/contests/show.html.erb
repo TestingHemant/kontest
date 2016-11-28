@@ -1,0 +1,75 @@
+<div class="col s12 m12 l12">
+  <p id="notice"><%= notice %></p>
+</div>
+<div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
+<div class="col s12 m8 l8" style="">  
+  <div class="col s12 m12 l12">
+    <div style="">
+      <%#= image_tag("contests/"+@contest.banner,:class=>'responsive-img') %>
+      <%= image_tag(@contest.image,:class=>'responsive-img') %>
+    </div>
+    <div class="condesc">
+      <p class="center"><span><h4 class="orange-text text-darken-1"><%= @contest.title %></h4></span></p>
+      <p><%= @contest.description.html_safe %></p>
+      <p><b>Steps to Participate</b></p>
+      <p><%= @contest.steps.html_safe %></p>  
+      <p>Top 3 will will <b><%= @contest.first_prize %></b></p>
+      <p>Entry Valid from: <%= @contest.start_date.to_date %> Till <%= @contest.end_date.to_date %></p>
+    </div>
+    <div class="partform condesc">
+      <div class="center">
+        <h5>Participate Now</h5>
+      </div>
+      <%= form_for([@contest, @contest.entries.build], html: {class: "custom-form"}) do |f| %>
+        <div class="form-horizontal">
+          <div class="form-group">
+            <%= f.label :image,"Upload Your Best Click",:class=>"control-label col m3 l3" %>
+            <%= f.file_field :image,:class=>"col m6 l6" %>
+            <span class="col m3 l3">&nbsp;</span>
+          </div>
+          <div class="form-group">
+            <%= f.label :uploaded_video,:class=>"control-label col m3 l3" %>
+            <%= f.text_field :uploaded_video,:class=>"form-control col m6 l6" %>
+            <span class="col m3 l3">&nbsp;</span>
+          </div>
+          <div class="form-group">
+            <%= f.label :caption,:class=>"control-label col m3 l3" %>
+            <%= f.text_field :caption,:class=>"form-control col m6 l6" %>
+            <span class="col m3 l3">&nbsp;</span>
+          </div>
+          <div class="form-group">
+            <%= f.label :mobile,:class=>"control-label col m3 l3" %>
+            <%= f.text_field :mobile,:class=>"form-control col m6 l6" %>
+            <span class="col m3 l3">&nbsp;</span>
+          </div>
+          <div class="form-group">
+            <%= f.label :email,:class=>"control-label col m3 l3" %>
+            <%= f.text_field :email,:class=>"form-control col m6 l6" %>
+            <span class="col m3 l3">&nbsp;</span>
+          </div>
+          <div class="actions center">
+            <%= f.submit 'Enter', :class=>"btn waves-effect waves-light"%>
+          </div>
+          <div class="center" style="margin-top:2%;">
+            *By clicking enter you agree to our terms and conditions<br>We don't share your data. Read our privacy statement <a href='#'>here</a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col s12 m12 l12 condesc">
+      <div class="" style="margin-top:1%;">
+        <h5 class="orange-text text-darken-1">Top 3 Entries So Far..</h5>
+        <% @contest.entries.each do |entry| %>
+          <div class="col s6 m4 l4 conimage">              
+              <%= image_tag(entry.image, :class=>"") %>              
+              <p><%= entry.caption %></p>
+          </div>
+        <% end %>
+        </table>
+      </div>  
+    </div>
+  </div>
+</div>
+<div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
+<%#= link_to 'Edit', edit_contest_path(@contest) %> 
+<%#= link_to 'Back', contests_path %>

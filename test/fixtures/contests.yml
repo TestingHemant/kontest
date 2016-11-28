@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  contest_type: MyString
+  banner: MyString
+  description: MyText
+  steps: MyText
+  first_prize: MyString
+  second_prize: MyString
+  third_prize: MyString
+  status: MyString
+  suspension_reason: MyString
+  start_date: 2016-11-15 11:38:30
+  end_date: 2016-11-15 11:38:30
+
+two:
+  title: MyString
+  contest_type: MyString
+  banner: MyString
+  description: MyText
+  steps: MyText
+  first_prize: MyString
+  second_prize: MyString
+  third_prize: MyString
+  status: MyString
+  suspension_reason: MyString
+  start_date: 2016-11-15 11:38:30
+  end_date: 2016-11-15 11:38:30

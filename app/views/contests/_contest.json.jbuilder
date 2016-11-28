@@ -1,0 +1,2 @@
+json.extract! contest, :id, :title, :contest_type, :banner, :description, :steps, :first_prize, :second_prize, :third_prize, :status, :suspension_reason, :start_date, :end_date, :created_at, :updated_at
+json.url contest_url(contest, format: :json)

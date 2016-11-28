@@ -1,0 +1,81 @@
+<%= form_for(@entry, html: {class: "custom-form"}) do |f| %>
+  <% if @entry.errors.any? %>
+    <div class="col s12 m12 l12">
+      <div id="error_explanation">
+        <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+        <ul>
+        <% @entry.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+<div class="form-horizontal">
+  <div class="form-group">
+    <%= f.label :contest_id,:class=>"control-label col m3 l3" %>
+    <%= f.text_field :contest_id,:class=>"form-control col m6 l6",:disabled=>"true" %>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
+    <%= f.label :image,:class=>"control-label col m3 l3" %>
+    <%= f.file_field :image,:class=>"col m3 l3" %>
+    <span class="col m3 l3">
+      <% if @entry.image? %>
+      <%= image_tag @entry.image.url(:thumb) %>
+    <% end %>
+    </span>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
+    <%#= f.label :uploaded_video,:class=>"control-label col m3 l3" %>
+    <%#= f.file_field :uploaded_video,:class=>"col m6 l6" %>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
+    <%= f.label :caption,:class=>"control-label col m3 l3" %>
+    <%= f.text_field :caption,:class=>"form-control col m6 l6" %>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
+    <%= f.label :mobile,:class=>"control-label col m3 l3" %>
+    <%= f.text_field :mobile,:class=>"form-control col m6 l6" %>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
+    <%= f.label :email,:class=>"control-label col m3 l3" %>
+    <%= f.text_field :email,:class=>"form-control col m6 l6" %>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
+    <%= f.label :votes,:class=>"control-label col m3 l3" %>
+    <%= f.text_field :votes,:class=>"form-control col m6 l6" %>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
+    <%= f.label :shares,:class=>"control-label col m3 l3" %>
+    <%= f.text_field :shares,:class=>"form-control col m6 l6" %>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
+    <%= f.label :status,:class=>"control-label col m3 l3" %>
+    <div class="col m6 l6">
+      <%= f.select :status,['Pending Approval','Approved','Rejected'],:class=>"form-control" %>
+    </div>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
+    <%= f.label :rejected_reason,:class=>"control-label col m3 l3" %>
+    <%= f.text_field :rejected_reason,:class=>"form-control col m6 l6" %>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="actions center">
+    <%= f.submit "Add Entries",:class=>"btn waves-effect waves-light" %>
+  </div>
+  <div class="right">
+    <%= link_to 'Show', @entry %> |
+    <%= link_to 'Back', entries_path %>
+  </div>
+</div>
+<% end %>

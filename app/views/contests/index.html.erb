@@ -1,0 +1,82 @@
+<div class="col s12 m12 l12">
+  <p id="notice"><%= notice %></p>
+</div>
+<% @contests.each do |contest| %>
+<% if contest.contest_type=="mega" || contest.contest_type=="Mega" %>
+  <div class="row" style="">
+    <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
+    <div class="col s12 m10 l10">
+      <div class="row">
+        <div class="col hide-on-small-and-down m3 l3 center">&nbsp;</div>
+        <div class="col s12 m6 l6 center heading">
+          <h4>Mega Contest of the Month</h4>
+        </div>
+        <div class="col hide-on-small-and-down m3 l3 center">&nbsp;</div>
+      </div>
+      <div class="row">
+        <div class="col s12 m12 l12">
+              <div class="card horizontal">
+                <div class="card-image">
+                    <%= image_tag(contest.image,:class=>'responsive-img',:width=>'60%') %>
+                </div>
+                <div class="card-stacked">
+                  <div class="card-content">
+                      <p><%= contest.description.html_safe %></p>
+                      <p><%#= contest.steps.html_safe %></p>
+                      <p class="center">Ends - <%= contest.end_date.to_date %></p>
+                  </div>
+                  <div class="card-action center">
+                      <%= link_to 'Participate Now', contest,:class=>"btn-large waves-effect waves-light" %>
+                  </div>
+                </div>
+              </div>      
+        </div>
+      </div>         
+      <div class="row">
+        <% elsif contest.contest_type=="monthly" || contest.contest_type=="Monthly"%> 
+        <div class="col s12 m6 l6">
+            <div class="heading center">
+              <h5>Contest of the Month</h5>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                  <%= image_tag(contest.image,:class=>'responsive-img',:width=>'60%') %>
+                  <span class="card-title center"><%= contest.title %></span>
+                </div>
+                <div class="condesc">
+                  <p><%= contest.description.html_safe %></p>
+                  <p><%#= contest.steps.html_safe %></p>
+                  <p class="center">Ends - <%= contest.end_date.to_date %></p>
+                </div>
+                <div class="card-action center">
+                 <%= link_to 'Participate Now', contest,:class=>"btn-large waves-effect waves-light" %>
+                </div>
+            </div>
+        </div>
+        <% elsif contest.contest_type=="weekly" || contest.contest_type=="Weekly"%>
+        <div class="col s12 m6 l6">
+          <div class="heading center">
+            <h5>Contest of the Week</h5>
+          </div>
+          <div class="card">
+            <div class="card-image">
+              <%= image_tag(contest.image,:class=>'responsive-img',:width=>'60%') %>
+              <span class="card-title center"><%= contest.title %></span>
+            </div>
+            <div class="condesc">
+              <p><%= contest.description.html_safe %></p>
+              <p><%#= contest.steps.html_safe %></p>  
+              <p class="center">Ends - <%= contest.end_date.to_date %></p>
+            </div>
+            <div class="card-action center">
+             <%= link_to 'Participate Now', contest,:class=>"btn-large waves-effect waves-light" %>
+            </div>
+         </div>
+        </div>
+      </div>
+    </div>
+    <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
+  </div>
+  <% end %>
+<% end %>
+   

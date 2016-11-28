@@ -1,0 +1,2 @@
+json.extract! entry, :id, :contest_id, :uploaded_image, :uploaded_video, :caption, :mobile, :email, :votes, :shares, :status, :rejected_reason, :created_at, :updated_at
+json.url entry_url(entry, format: :json)
