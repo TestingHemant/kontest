@@ -11,11 +11,11 @@
     	<%#= link_to "Sign out", destroy_user_session_path %>
       <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
     <% else %>
-    	<%#- if devise_mapping.omniauthable? %>
-        <%#- resource_class.omniauth_providers.each do |provider| %>
-          <li><%#= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %></li>
-        <%# end -%>
-      <%# end -%>
+    	<%- if devise_mapping.omniauthable? %>
+        <%- resource_class.omniauth_providers.each do |provider| %>
+          <li><%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %></li>
+        <% end -%>
+      <% end -%>
     <% end %>
   </ul>
 </nav>
