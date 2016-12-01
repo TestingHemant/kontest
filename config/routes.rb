@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :problems
+
   root :to => "contests#index"
   #devise_for :users
   #devise_for :users
@@ -17,6 +19,7 @@ Rails.application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
+  get "/pages/:page" => "pages#show"
   #devise_for :users do
   #  get '/users/sign_out' => 'devise/sessions#destroy'
   #end

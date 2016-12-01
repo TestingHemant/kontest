@@ -1,0 +1,46 @@
+<div class="col s12 m12 l12 center">
+  <p id="notice"><%= notice %></p>
+  <p class="center"><h5>Submitted Details</h5></p>
+</div>
+<div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
+<div class="col s12 m8 l8" style="">  
+  <div class="col s12 m12 l12 condesc" style="padding:30px 10px 50px 60px !important">
+    
+    <p>Submitted By: <%= @problem.name %></p>
+    <p>Email: <%= @problem.email %></p>
+    <p>Mobile: <%= @problem.mobile %></p>
+    <p>Report Type: <%= @problem.report_type %></p>
+    <p>Issue Description: <%= @problem.issue_description %></p><br>
+    <p class="center">
+      <%= link_to 'Home', "/" %> |
+      <%= link_to 'Back to Report page', new_problem_path %>
+    </p>
+  </div>
+</div>
+<div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
+<!--p>
+  <strong>Name:</strong>
+  <%= @problem.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @problem.email %>
+</p>
+
+<p>
+  <strong>Mobile:</strong>
+  <%= @problem.mobile %>
+</p>
+
+<p>
+  <strong>Report type:</strong>
+  <%= @problem.report_type %>
+</p>
+
+<p>
+  <strong>Issue description:</strong>
+  <%= @problem.issue_description %>
+</p-->
+
+<%#= link_to 'Edit', edit_problem_path(@problem) %>

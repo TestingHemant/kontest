@@ -163,3 +163,12 @@ form{
 .site-footer, .page-wrap:after {
   height: 100px; 
 }
+.staticpage{
+    padding: 20px 30px 30px 30px !important;
+    text-align:justify;
+    font-size: 14px;
+}
+.staticpage ul{
+    padding-left: 20px !important;
+    padding-bottom: 10px;
+}
