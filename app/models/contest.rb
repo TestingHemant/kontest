@@ -5,6 +5,7 @@ class Contest < ActiveRecord::Base
 	#validates :status, uniqueness:{scope: :contest_type}
 	#validates :registration_number, length: { is: 6 }
 	validates_uniqueness_of :contest_type, if: :same_status?
+	scope :recent, -> {order("contests.created_at DESC")}
     
     def same_status?
      status == "active" || status="Active"

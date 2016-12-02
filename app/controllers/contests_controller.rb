@@ -10,7 +10,10 @@ class ContestsController < ApplicationController
         render "shared/nocontest"
       end
   end
-
+  def contestlist
+    #@program = Program.paginate(:page=>params[:page],:per_page=>10).by_status('active').recent  
+    @contests = Contest.paginate(:page=>params[:page],:per_page=>10).recent
+  end
   # GET /contests/1
   # GET /contests/1.json
   def show

@@ -10,6 +10,7 @@
   <table class="table-responsive bordered highlight">
     <thead>
       <tr>
+        <th>Contest Id</th>
         <th width="15%">Image/Video</th>
         <th>Participant Info</th>
         <th>Votes/Shares</th>
@@ -22,6 +23,10 @@
     <tbody class="krtext">
       <% @entries.each do |entry| %>
         <tr>
+          <td>
+            <%#= entry.contest.title %>
+            <%= image_tag(entry.contest.image,:class=>'responsive-img') %>
+          </td>
           <td>
             <%if entry.image %>
               <%= image_tag(entry.image, :class=>"relatedimg responsive-image") %>
@@ -66,7 +71,10 @@
     </tbody>
   </table>
   <br>
-  <%= link_to 'Add Entry', new_entry_path,:class=>"center btn waves-effect waves-light"  %>
+  <%#= link_to 'Add Entry', new_entry_path,:class=>"center btn waves-effect waves-light"  %>
 </div>
+</div>
+<div class="col s12 m10 l10 pagination" style="text-align:right">
+   <%= will_paginate @entry, renderer: BootstrapPagination::Rails %>
 </div>
 <div class="col hide-on-small-and-below m1 l1">&nbsp;</div>
