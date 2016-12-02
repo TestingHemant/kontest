@@ -1,0 +1,44 @@
+<div class="col s12 m12 l12 center">
+  <p id="notice"><%= notice %></p>
+</div>
+<div class="col hide-on-small-and-below m1 l1">&nbsp;</div>
+<div class="col s12 m10 l10 condesc" style="font-size:14px;">
+	<div class="center">
+		<h5>List of Users</h5>
+	</div>
+	<table class="table-bordered">
+	<tr>
+		<th width="8%">Id</th>
+		<th width="25%">UID</th>
+		<th width="12%">Name</th>
+		<th width="12%">Role</th>		
+		<th width="8%">Provider</th>
+		<th width="25%">SignIn Details</th>
+		<th width="10%">Actions</th>
+	</tr>
+	<% @users.each do |user| %>
+	<tr>
+		<td><%= user.id %></td>
+		<td><%= user.uid %></td>
+		<td><%= user.name %></td>
+		<td><%= user.role %></td>
+		<td><%= user.provider %></td>
+		<td>
+			<span style="color:grey">Last Sign in</span> : <%= user.last_sign_in_at.to_date %><br>
+			<span style="color:grey">Last Sign Ip</span> : <%= user.last_sign_in_ip %><br>
+			<span style="color:grey">Signed Up At</span> : <%= user.created_at.to_date %><br>
+			<span style="color:grey">Sign Count</span> : <%= user.sign_in_count %>
+		</td>
+		<td>
+			<%#= link_to 'Show', contest %><br>
+        	<%= link_to 'Edit', "#" %><%#/users/edit/#{user.id}" %><br>
+        	<%#= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
+		</td>
+	</tr>
+	<% end %>
+	</table>
+</div>
+<div class="col s12 m10 l10 pagination" style="text-align:right">
+   <%= will_paginate @user, renderer: BootstrapPagination::Rails %>
+</div>
+<div class="col hide-on-small-and-below m1 l1">&nbsp;</div>

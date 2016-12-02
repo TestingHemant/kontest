@@ -1,0 +1,31 @@
+<%= form_for(@user, html: {class: "custom-form"}) do |f| %>
+  <% if @user.errors.any? %>
+    <div class="col s12 m12 l12">
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+<div class="form-horizontal">
+  <div class="form-group">
+    <%= f.label :role,:class=>"control-label col m3 l3" %>
+    <div class="col m6 l6">
+      <%= f.select :role,['Select Role','Participant','Admin'],:class=>"form-control" %>
+    </div>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="actions center">
+    <%= f.submit "Update user",:class=>"btn waves-effect waves-light" %>
+  </div>
+  <div class="right">
+    <%#= link_to 'Show', @user %>
+    <%= link_to 'Back', "/admin"%><%#entries_path %>
+  </div>
+</div>
+<% end %>

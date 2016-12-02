@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [:facebook]
+  scope :recent, -> {order("users.created_at DESC")}
 
   def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -22,7 +23,7 @@ class User < ActiveRecord::Base
       end
   end
 
-  #def admin?
-  #  self.role == 'admin' || self.role=='Admin'
-  #end
+  def admin?
+    self.role == 'admin' || self.role=='Admin'
+  end
 end

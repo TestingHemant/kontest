@@ -1,0 +1,42 @@
+<div class="col s12 m12 l12 center">
+  <p id="notice"><%= notice %></p>
+</div>
+<div class="col hide-on-small-and-below m1 l1">&nbsp;</div>
+<div class="col s12 m10 l10 condesc" style="font-size:14px;">
+	<div class="center">
+		<h5>List of Contests</h5>
+	</div>
+	<table class="table-bordered">
+	<tr>
+		<th width="8%">Type</th>
+		<th width="12%">Title</th>
+		<th width="22%">Description</th>
+		<th width="25%">Steps</th>
+		<th width="8%">Status</th>
+		<th width="15%">Dates</th>
+		<th width="10%">Actions</th>
+	</tr>
+	<% @contests.each do |contest| %>
+	<tr>
+		<td><%= contest.contest_type.capitalize %></td>
+		<td><%= contest.title %></td>
+		<td><%= contest.description.html_safe %></td>
+		<td><%= contest.steps.html_safe %></td>
+		<td><%= contest.status.capitalize %></td>
+		<td>
+			<b>St: </b><%= contest.start_date.to_date %><br>
+			<b>En: </b><%= contest.end_date.to_date %>
+		</td>
+		<td>
+			<%= link_to 'Show', contest %><br>
+        	<%= link_to 'Edit', edit_contest_path(contest) %><br>
+        	<%= link_to 'Destroy', contest, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+	</tr>
+	<% end %>
+	</table>
+</div>
+<div class="col s12 m10 l10 pagination" style="text-align:right">
+   <%= will_paginate @contest, renderer: BootstrapPagination::Rails %>
+</div>
+<div class="col hide-on-small-and-below m1 l1">&nbsp;</div>

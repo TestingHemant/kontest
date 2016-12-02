@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
   get "/pages/:page" => "pages#show"
   get "/myentries" => "entries#mycontest"
+  get "/admin" => "users#admin"
+  get "/contestlist" => "contests#contestlist"
+  get "/userlist" => "users#userlist"
+  get "/users/edit/:id" => "users#edit"
   #devise_for :users do
   #  get '/users/sign_out' => 'devise/sessions#destroy'
   #end
