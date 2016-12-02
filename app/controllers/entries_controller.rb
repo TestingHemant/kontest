@@ -4,7 +4,8 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-    @entries = Entry.all
+    @entries = Entry.paginate(:page=>params[:page],:per_page=>10).recent
+    #@entries = Entry.all
   end
 
   def mycontest
