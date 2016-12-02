@@ -4,7 +4,11 @@ class ContestsController < ApplicationController
   # GET /contests
   # GET /contests.json
   def index
-    @contests = Contest.all
+      @contests = Contest.all
+      @contests = Contest.where("end_date >= ?", Time.zone.now.beginning_of_day)
+      if @contests.blank?
+        render "shared/nocontest"
+      end
   end
 
   # GET /contests/1

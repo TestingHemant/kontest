@@ -182,3 +182,8 @@ form{
     display:block;
     cursor: pointer;
 }
+.nocontest{
+    font-size: 16px;
+    padding: 20px !important;
+    border:1px solid maroon;
+}
