@@ -43,8 +43,17 @@ class EntriesController < ApplicationController
   #voting 
   def upvote
     @entry = Entry.find(params[:id])
-    @entry.votes.create
-    redirect_to(entries_path)
+    @success=@entry.votes.create(user_id: current_user.id)
+    if @success.save
+      flash[:notice] =  "Thank you for upvoting!"
+      redirect_to :back
+    else 
+      flash[:notice] =  "You have already upvoted this!"
+      redirect_to :back
+    end
+    #@entry.votes.create
+    #redirect_to(entries_path)
+    #redirect_to :back
   end
 
   # PATCH/PUT /entries/1

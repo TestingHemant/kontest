@@ -2,70 +2,71 @@
   <p id="notice"><%= notice %></p>
 </div>
 <div class="col hide-on-small-and-below m1 l1">&nbsp;</div>
-<div class="col s12 m10 l10 condesc">
-
-<h4>Entries</h4>
-
-<table class="table-responsive bordered highlight">
-  <thead>
-    <tr>
-      <th width="15%">Image/Video</th>
-      <th>Participant Info</th>
-      <th>Votes/Shares</th>
-      <th>Status</th>
-      <th>Rejected reason</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @entries.each do |entry| %>
+<div class="col s12 m10 l10">
+  <div class="center">
+    <h5>Entries</h5>
+  </div>
+  <div class="condesc">
+  <table class="table-responsive bordered highlight">
+    <thead>
       <tr>
-        <td>
-          <%if entry.image? %>
-            <%= image_tag(entry.image, :class=>"relatedimg responsive-image") %>
-          <%else%>
-            <p>No Image</p>
-          <%end%>
-          <%if entry.image? %>
-            <%= image_tag(entry.uploaded_video, :class=>"relatedimg responsive-image") %>
-          <%else%>
-            <p>No Image</p>
-          <%end%>
-          <div class="conimage">
-            <p><%= entry.caption %></p>
-          </div>
-        </td>        
-        <td>
-          <%= entry.mobile %><br>
-          <%= entry.email %>
-        </td>
-        <td>
-          <%if entry.votes? %>
-            <%= entry.votes %>
-          <%else%>
-            <p>No Votes yet</p>
-          <%end%>
-          <%if entry.shares? %>
-            <%= entry.shares %>
-          <%else%>
-            <p>No Shares yet</p>
-          <%end%>
-        </td>
-        <td><%= entry.status %></td>
-        <td><%= entry.rejected_reason %></td>
-        <td>
-          <%= link_to 'Show', entry %><br>
-          <%= link_to 'Edit', edit_entry_path(entry) %><br>
-          <%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %><br>
-        </td>
+        <th width="15%">Image/Video</th>
+        <th>Participant Info</th>
+        <th>Votes/Shares</th>
+        <th>Status</th>
+        <th>Rejected reason</th>
+        <th>Action</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<%= link_to 'Add Entry', new_entry_path,:class=>"btn waves-effect waves-light"  %>
+    <tbody class="krtext">
+      <% @entries.each do |entry| %>
+        <tr>
+          <td>
+            <%if entry.image %>
+              <%= image_tag(entry.image, :class=>"relatedimg responsive-image") %>
+            <%else%>
+              <p>No Image</p>
+            <%end%>
+            <%if entry.uploaded_video %>
+              <%= image_tag(entry.uploaded_video, :class=>"relatedimg responsive-image") %>
+            <%else%>
+              <p>No Image</p>
+            <%end%>
+            <div class="conimage">
+              <p><%= entry.caption %></p>
+            </div>
+          </td>        
+          <td>
+            <%= entry.mobile %><br>
+            <%= entry.email %>
+          </td>
+          <td>
+            <%if entry.votes %>
+              <%= entry.votes.count %>
+            <%else%>
+              <p>No Votes yet</p>
+            <%end%>
+            <%if entry.shares %>
+              <%= entry.shares.to_s %>
+            <%else%>
+              <p>No Shares yet</p>
+            <%end%>
+          </td>
+          <td><%= entry.status %></td>
+          <td><%= entry.rejected_reason %></td>
+          <td>
+            <%= link_to 'Show', entry %><br>
+            <%= link_to 'Edit', edit_entry_path(entry) %><br>
+            <%= link_to 'Select As Winner', "/" %><br>
+            <%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to 'Add Entry', new_entry_path,:class=>"center btn waves-effect waves-light"  %>
+</div>
 </div>
 <div class="col hide-on-small-and-below m1 l1">&nbsp;</div>

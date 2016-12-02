@@ -140,6 +140,7 @@ form{
     font-size: 12px;
 }
 .relatedimg{
+    width: 70%;
     max-width: 100%;
 }
 .info{
@@ -171,4 +172,13 @@ form{
 .staticpage ul{
     padding-left: 20px !important;
     padding-bottom: 10px;
+}
+.krtext{
+    font-size: 14px;
+}
+.vote {
+    background: url(../images/icons/vote.png) #f2efa8 no-repeat 10px 6px;
+    text-indent:30px;
+    display:block;
+    cursor: pointer;
 }
