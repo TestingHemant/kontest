@@ -8,6 +8,7 @@
   <ul class="user-links list-inline pull-right black-text">
     <% if current_user %>
     	<li>Welcome <%= current_user.name %></li>
+      <li><%= link_to "Your Entries","/myentries" %></li>
     	<%#= link_to "Sign out", destroy_user_session_path %>
       <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
     <% else %>

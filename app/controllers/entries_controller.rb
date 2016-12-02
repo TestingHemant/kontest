@@ -7,6 +7,14 @@ class EntriesController < ApplicationController
     @entries = Entry.all
   end
 
+  def mycontest
+    #@appliedprogram = Appliedprogram.find_by_id(params[:id])
+    #@program=Program.find_by_id(@appliedprogram.program_id)
+    @user = User.find(current_user.id)
+    @userentries = Entry.where(user_id: @user)
+    #@contests = Contest.find(params[@entries.contest_id])
+    #Entry.find_by_user_id(params[:current_user_id])
+  end
   # GET /entries/1
   # GET /entries/1.json
   def show
@@ -25,6 +33,8 @@ class EntriesController < ApplicationController
   # POST /entries.json
   def create
     @contest = Contest.find(params[:contest_id])
+    params[:entry][:status]="Submitted"
+    params[:entry][:user_id]=current_user.id
     @entry = @contest.entries.create(entry_params)
     redirect_to contest_path(@contest)
     #@entry = Entry.new(entry_params)
@@ -88,6 +98,6 @@ class EntriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def entry_params
-      params.require(:entry).permit(:contest_id, :uploaded_image,:image, :uploaded_video, :caption, :mobile, :email, :votes, :shares, :status, :rejected_reason)
+      params.require(:entry).permit(:contest_id, :uploaded_image,:image, :uploaded_video, :caption, :mobile, :email, :votes, :shares, :status, :rejected_reason,:user_id)
     end
 end
