@@ -13,6 +13,9 @@ class EntriesController < ApplicationController
     #@program=Program.find_by_id(@appliedprogram.program_id)
     @user = User.find(current_user.id)
     @userentries = Entry.where(user_id: @user)
+    if @userentries.blank?
+      render "entries/nocontests"
+    end
     #@contests = Contest.find(params[@entries.contest_id])
     #Entry.find_by_user_id(params[:current_user_id])
   end
