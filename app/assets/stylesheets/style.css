@@ -187,3 +187,8 @@ form{
     padding: 20px !important;
     border:1px solid maroon;
 }
+.blankdata{
+    padding: 25px 25px 25px 25px !important;
+    font-size: 16px; 
+    background-color: #fff;
+}

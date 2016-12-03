@@ -4,7 +4,7 @@
 <div class="col hide-on-small-and-below m1 l1">&nbsp;</div>
 <div class="col s12 m10 l10 condesc" style="font-size:14px;">
 	<div class="center">
-		<h5>List of Users</h5>
+		<h5>List of Users</h5><%= link_to "Admin Panel","/admin" %>
 	</div>
 	<table class="table-bordered">
 	<tr>
@@ -31,7 +31,7 @@
 		</td>
 		<td>
 			<%#= link_to 'Show', contest %><br>
-        	<%= link_to 'Edit', "#" %><%#/users/edit/#{user.id}" %><br>
+        	Pending<%= link_to 'Edit', "#" %><%#/users/edit/#{user.id}" %><br>
         	<%#= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
 		</td>
 	</tr>
