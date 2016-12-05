@@ -6,17 +6,18 @@
   </ul>
 
   <ul class="user-links list-inline pull-right black-text">
-    <% if current_user %>
+    <% if user_signed_in?#current_user %>
     	<li>Welcome <%= current_user.name %></li>
       <li><%= link_to "Your Entries","/myentries" %></li>
     	<%#= link_to "Sign out", destroy_user_session_path %>
       <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
     <% else %>
-    	<% if Devise.mappings[:user].omniauthable? %>
-        <% resource_class.omniauth_providers.each do |provider| %>
-          <li><%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %></li>
-        <% end -%>
-      <% end -%>
+    	<%# if Devise.mappings[:user].omniauthable? %>
+        <%# resource_class.omniauth_providers.each do |provider| %>
+        <li><%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %></li>
+          <!--li><%#= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %></li-->
+        <%# end -%>
+      <%# end -%>
     <% end %>
   </ul>
 </nav>

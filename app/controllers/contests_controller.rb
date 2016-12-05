@@ -1,6 +1,6 @@
 class ContestsController < ApplicationController
   before_action :set_contest, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, :except=>[:index]
   # GET /contests
   # GET /contests.json
   def index
@@ -31,8 +31,9 @@ class ContestsController < ApplicationController
   # POST /contests
   # POST /contests.json
   def create
-    @contest = Contest.new(contest_params)
-
+    #params[:user_id]=current_user.id
+    params[:contest][:user_id]=current_user.id
+    @contest = Contest.new(contest_params)    
     respond_to do |format|
       if @contest.save
         format.html { redirect_to @contest, notice: 'Contest was successfully created.' }
@@ -76,6 +77,6 @@ class ContestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contest_params
-      params.require(:contest).permit(:title, :contest_type, :banner, :image, :description, :steps, :first_prize, :second_prize, :third_prize, :status, :suspension_reason, :start_date, :end_date)
+      params.require(:contest).permit(:title, :contest_type, :banner, :image, :description, :steps, :first_prize, :second_prize, :third_prize, :status, :suspension_reason, :start_date, :end_date,:user_id)
     end
 end
