@@ -1,6 +1,7 @@
 class Entry < ActiveRecord::Base
   belongs_to :contest
   has_many :votes, dependent: :destroy
+  belongs_to :user
   has_many :upvoted_users, through: :votes, source: :user
 
   scope :recent, -> {order("entries.created_at DESC")}

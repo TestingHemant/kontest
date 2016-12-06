@@ -1,10 +1,12 @@
 class Contest < ActiveRecord::Base
 	has_many :entries, :dependent => :destroy
-
+	belongs_to :users
 	validates :title,:description,:steps, :presence => true
 	#validates :status, uniqueness:{scope: :contest_type}
 	#validates :registration_number, length: { is: 6 }
-	validates_uniqueness_of :contest_type, if: :same_status?
+	validates_uniqueness_of :contest_type, scope: :status #if: :same_status?
+
+	scope :by_status, -> status { where(status: status) }
 	scope :recent, -> {order("contests.created_at DESC")}
     
     def same_status?

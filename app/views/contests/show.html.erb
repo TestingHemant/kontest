@@ -6,10 +6,14 @@
   <div class="col s12 m12 l12">
     <div style="">
       <%#= image_tag("contests/"+@contest.banner,:class=>'responsive-img') %>
-      <%= image_tag(@contest.image,:class=>'responsive-img') %>
+      <%# if @contest %>
+        <%= image_tag(@contest.image,:class=>'responsive-img') %>
+      <%# end %>
     </div>
     <div class="condesc">
-      <p class="center"><span><h4 class="orange-text text-darken-1"><%= @contest.title %></h4></span></p>
+      <p class="center">
+        <span><h4 class="orange-text text-darken-1"><%= @contest.title %></h4></span>
+      </p>
       <p><%= @contest.description.html_safe %></p>
       <p><b>Steps to Participate</b></p>
       <p><%= @contest.steps.html_safe %></p>  
