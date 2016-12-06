@@ -1,9 +1,8 @@
 <%= form_for(@contest, html: {class: "custom-form"}) do |f| %>
   <% if @contest.errors.any? %>
-    <div class="col s12 m12 l12">
+    <div class="col s12 m12 l12 center">
       <div id="error_explanation">
-        <h2><%= pluralize(@contest.errors.count, "error") %> prohibited this contest from being saved:</h2>
-
+        <b><%= pluralize(@contest.errors.count, "error") %> prohibited this contest from being saved:</b>
         <ul>
         <% @contest.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -86,7 +85,7 @@
     </div>
   </div>
   <div class="actions center">
-    <%= f.submit "Add Contents",:class=>"btn waves-effect waves-light" %>
+    <%= f.submit "Update Contests",:class=>"btn waves-effect waves-light" %>
   </div>
   <div class="right">
     <%= link_to 'Show', @contest %> |

@@ -41,7 +41,8 @@
           </div>
         <% end %>
       <div class="row">
-        <% elsif contest.contest_type=="monthly" || contest.contest_type=="Monthly"%>         
+        <% elsif contest.contest_type=="monthly" || contest.contest_type=="Monthly"%> 
+          <% if contest.status=="Active" || contest.status=="active" %>        
           <div class="col s12 m6 l6">
             <div class="heading center">
               <h5>Contest of the Month</h5>
@@ -61,7 +62,15 @@
                 </div>
             </div>
           </div>
+          <% else %>
+          <div class="col s12 m6 l6">
+            <p class="nocontest center condesc">
+              No Monthly Contest available right now, please check after sometime.
+            </p>
+          </div>
+        <% end %>
         <% elsif contest.contest_type=="weekly" || contest.contest_type=="Weekly"%>
+          <% if contest.status=="Active" || contest.status=="active" %>        
           <div class="col s12 m6 l6">
             <div class="heading center">
               <h5>Contest of the Week</h5>
@@ -81,8 +90,16 @@
               </div>
            </div>
           </div>
+          <% else %>
+          <div class="col s12 m6 l6">
+            <p class="nocontest center condesc">
+              No Weekly Contest available right now, please check after sometime.
+            </p>
+          </div>
+          <%end%>
         </div>
         <% elsif contest.contest_type=="daily" || contest.contest_type=="Daily"%>
+        <% if contest.status=="Active" || contest.status=="active" %>        
         <div class="row">
           <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
           <div class="col s12 m10 l10">
@@ -114,6 +131,13 @@
               </div>
             </div>         
           </div>
+          <% else %>
+          <div class="row">
+            <p class="nocontest center condesc">
+              No Weekly Contest available right now, please check after sometime.
+            </p>
+          </div>
+          <%end%>
         </div>
       <% end %>
     <% end %>
