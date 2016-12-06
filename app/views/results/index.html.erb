@@ -1,0 +1,53 @@
+<div class="col s12 m12 l12 center">
+  <p id="notice"><%= notice %></p>
+</div>
+<div class="col hide-on-small-and-below m1 l1">&nbsp;</div>
+<div class="col s12 m10 l10 condesc" style="font-size:14px;">
+	<div class="center">
+		<h5>Results</h5><%= link_to "Admin Panel","/admin" %>
+	</div>
+	<!--div class="center">
+		<div class="form-horizontal">
+		  <div class="form-group">
+			  <%#= form_tag(results_path, :method => "get", id: "search-form") do %>
+	            <label class="control-label col m3 l3">Enter Contests</label>
+	            <%#= text_field_tag :search, params[:search], placeholder: "Search Contests",:class=>"form-control col m6 l6",:size=>24 %>
+	          <!--i class="material-icons">search</i-->
+	            <!--%#= button_tag( :class =>"btn") do %>
+	              search
+	            <%# end %>
+	            <%#= submit_tag " Search ",:class=>"btn btn-success",:style=>"margin-left:0px;" %>
+	          <%#end%>
+	      </div>
+	    </div>
+	</div-->
+	<table class="table-bordered sortable">
+	<tr>
+		<th width="10%">ContestType</th>
+		<th width="20%">Contest Title</th>
+		<th width="30%">Entry By</th>
+		<th width="10%">Vote Count</th>
+		<th width="10%">Contest Status</th>
+		<th width="20%">Contest Dates</th>
+	</tr>
+	<% @votes.each do |votes| %>
+	<tr>
+		<td><%= votes.entry.contest.contest_type %> (<%= link_to votes.entry.contest.id, "/contests/#{votes.entry.contest.id}" %>)</td>
+		<td><%= votes.entry.contest.title %></td>
+		<td>
+			<span style="color:grey;">Name: </span><%= votes.entry.user.name %><br>
+			<span style="color:grey;">FB Email: </span><%= votes.entry.user.email %><br>
+			<span style="color:grey;">Entry Email: </span><%= votes.entry.email %><br>
+			<span style="color:grey;">Mobile : </span><%= votes.entry.mobile %><br>
+		</td>
+		<td><%= pluralize(votes.entry.votes.count, "vote") %></td>
+		<td><%= votes.entry.contest.status.camelize %></td>
+		<td>
+			<b>Start Date</b>: <%= votes.entry.contest.start_date.to_date %><br>
+			<b>End Date</b>: <%= votes.entry.contest.end_date.to_date %>
+		</td>
+	</tr>
+	<% end %>
+	</table>
+</div>
+<div class="col hide-on-small-and-below m1 l1">&nbsp;</div>

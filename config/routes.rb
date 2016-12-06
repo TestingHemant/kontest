@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       post 'upvote'
     end
   end
+  resources :results
   #resources :contests
   #get '/auth/:provider', to: 'sessions#create'
   #get 'auth/failure', to: redirect('/')
