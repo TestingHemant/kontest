@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
   
   resources :results 
-  #resources :entries do
+  #resources :users do
   #  member do
   #    post 'overide'
     #resources :votes

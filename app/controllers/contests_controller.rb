@@ -4,11 +4,12 @@ class ContestsController < ApplicationController
   # GET /contests
   # GET /contests.json
   def index
-      @contests = Contest.all
-      @contests = Contest.where("end_date >= ?", Time.zone.now.beginning_of_day)
-      if @contests.blank?
-        render "shared/nocontest"
-      end
+    #@user=User.find(params[:user_id])
+    @contests = Contest.all
+    @contests = Contest.where("end_date >= ?", Time.zone.now.beginning_of_day)
+    if @contests.blank?
+      render "shared/nocontest"
+    end
   end
   def contestlist
     #@program = Program.paginate(:page=>params[:page],:per_page=>10).by_status('active').recent  
@@ -62,12 +63,25 @@ class ContestsController < ApplicationController
   # DELETE /contests/1
   # DELETE /contests/1.json
   def destroy
-    @contest.destroy
-    respond_to do |format|
-      format.html { redirect_to contests_url, notice: 'Contest was successfully destroyed.' }
-      format.json { head :no_content }
+    @contest=Contest.find(params[:id])
+    #@contest.destroy
+    begin
+      respond_to do |format|
+        if @contest.update_attributes(:status=>"deleted")
+          format.html { redirect_to :back, notice: 'Contest removed successfully.' }
+          format.json { head :no_content }
+        else
+          flash[:notice] = "Can not be removed"
+          redirect_to :back
+          #format.json {render json: @contest.errors, status: :unprocessable_entity}
+          #redirect_to recruiter_root_path, :flash => {:error => "Something Went Wrong"}  
+        end
+      end
+    rescue ActiveRecord::RecordNotFound => e
+      redirect_to :back
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
