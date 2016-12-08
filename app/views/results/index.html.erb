@@ -10,7 +10,7 @@
 <div class="col hide-on-small-and-below m1 l1">&nbsp;</div>
 <div class="col s12 m10 l10 condesc" style="font-size:14px;">
 	<div class="center">
-		<h5>Results</h5><%= link_to "Admin Panel","/admin" %>
+		<h5>Results</h5><%#= link_to "Admin Panel","/admin" %>
 	</div>
 	<!--div class="center">
 		<div class="form-horizontal">
@@ -48,21 +48,11 @@
 			<span style="color:grey;">Mobile : </span><%= votes.entry.mobile %><br>
 		</td>
 		<td>
-			<%= pluralize(votes.entry.votes.count, "vote") %>
-			<%#= form_tag entries_path, method: :post do |f| %>	        
-		        <!--div class = "">
-		            <%#= text_field :upvotes,:class=>"form-control col m6 l6"%>
-		        </div>
-		        <div class = "">
-		            <%#= submit_tag 'Overide', :controller=>"entries",:action=>"overide", class: 'btn btn-success' %>
-		            <%#= link_to("overide",overide_entry_path(votes.entry.id,:votes => "10"),method: :post,:id=>"vote") %>
-		        </div>
-		    <%# end %>
-			
-			<%#= form_tag(results_path, :method => "get", id: "up_vote", html: {class: "custom-form"}) do %>
-				<%#= text_field_tag :votes, params[:votes],:class=>"form-control",:size=>5 %>
-				<%#= link_to "Overide",:class=>"btn",:controller=>"entries",:action=>"overidevotecount" %>
-			<%#end%>-->
+			<% if votes.entry.entryvotes %> 
+				<%= pluralize(votes.entry.entryvotes, "vote") %>
+			<%else%>
+				<%= pluralize(votes.entry.votes.count, "vote") %>
+			<%end%>
 		</td>
 		<td><%= votes.entry.contest.status.camelize %></td>
 		<td>

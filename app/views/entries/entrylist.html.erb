@@ -10,8 +10,8 @@
   <table class="table-responsive bordered highlight">
     <thead>
       <tr>
-        <th>Contest Id</th>
-        <th width="15%">Image/Video</th>
+        <th width="15%">Contest</th>
+        <th width="15%">Image</th>
         <th>Participant Info</th>
         <th>Votes</th>
         <th>Status</th>
@@ -25,7 +25,7 @@
         <tr>
           <td>
             <%#= entry.contest.title %>
-            <%= image_tag(entry.contest.image,:class=>'responsive-img') %>
+            <%= link_to(image_tag(entry.contest.image,:class=>'relatedimg responsive-img'),"/contests/#{entry.contest.id}") %>
           </td>
           <td>
             <%if entry.image %>
@@ -47,10 +47,14 @@
             <%= entry.email %>
           </td>
           <td>
-            <%if entry.votes %>
-              <%= entry.votes.count %>
+            <%if entry.entryvotes %>
+              <%= entry.entryvotes %>
             <%else%>
-              <p>No Votes yet</p>
+              <%if entry.votes %>
+                <%= entry.votes.count %>
+              <%else%>
+                <p>No Votes yet</p>
+              <%end%>
             <%end%>
             <%#if entry.shares %>
               <%#= entry.shares.to_s %>

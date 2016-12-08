@@ -88,9 +88,9 @@ class EntriesController < ApplicationController
   def overide
     @user=User.find(current_user.id)
     @entry=Entry.find(params[:id])
-    params[:entry][:votes] = params[:upvotes]
+    params[:entry][:entryvotes] = params[:entryvotes]
     respond_to do |format|
-      if @entry.update_attributes(params[:entry].permit(:votes))
+      if @entry.update_attributes(:entryvotes)
         flash[:notice] =  "Vote counts updated successfully."
         redirect_to "/results"
         #format.html { redirect_to "/results", notice: 'Vote counts updated successfully.' }
@@ -121,6 +121,6 @@ class EntriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def entry_params
-      params.require(:entry).permit(:contest_id, :uploaded_image,:image, :uploaded_video, :caption, :mobile, :email, :votes, :shares, :status, :rejected_reason,:user_id)
+      params.require(:entry).permit(:contest_id, :uploaded_image,:image, :uploaded_video, :caption, :mobile, :email, :shares, :status, :rejected_reason,:user_id,:entryvotes)
     end
 end

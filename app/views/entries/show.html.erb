@@ -17,7 +17,11 @@
       Caption : <b><%= @entry.caption %></b>
     </div>
     <div class="col s12 m6 l6" style="margin-top:2%;text-align:right">
-      <%= pluralize(@entry.votes.count, "vote") %> |
+      <%if @entry.entryvotes %>
+        <%= pluralize(@entry.entryvotes,"vote") %>
+      <%else%>
+        <%= pluralize(@entry.votes.count, "vote") %> |  
+      <%end%>      
       <%= link_to(image_tag("icons/Vote.png",:class=>"responsive-img",:width=>'15%'),upvote_entry_path(@entry),method: :post,:id=>"vote") %>
       <%#= link_to(image_tag("icons/Voted.png",:class=>"responsive-img",:width=>'15%'),upvote_entry_path(@entry),method: :post,:id=>"voted") %>
       <!--Votes : <%= @entry.votes %>-->

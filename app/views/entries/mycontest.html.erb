@@ -40,16 +40,20 @@
             </div>
           </td>        
           <td>
-            <%if entry.votes %>
-              <%= entry.votes.count %>
+            <%if entry.entryvotes %>
+              <%= entry.entryvotes %>
             <%else%>
-              <p>No Votes yet</p>
+              <%if entry.votes %>
+                <%= entry.votes.count %>
+              <%else%>
+                <p>No Votes yet</p>
+              <%end%>
             <%end%>
-            <%if entry.shares %>
-              <%= entry.shares.to_s %>
-            <%else%>
-              <p>No Shares yet</p>
-            <%end%>
+            <%#if entry.shares %>
+              <%#= entry.shares.to_s %>
+            <%#else%>
+              <!--p>No Shares yet</p-->
+            <%#end%>
           </td>
           <td>
             <%if entry.status %>
