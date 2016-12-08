@@ -9,6 +9,10 @@ class EntriesController < ApplicationController
     #@entries = Entry.all
   end
 
+  def entrylist
+    @entries = Entry.paginate(:page=>params[:page],:per_page=>10).recent
+  end
+
   def mycontest
     @user = User.find(current_user.id)
     @userentries = Entry.where(user_id: @user)

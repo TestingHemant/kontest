@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get "/myentries" => "entries#mycontest"
   get "/admin" => "users#admin"
   get "/contestlist" => "contests#contestlist"
+  get "/entrylist" => "entries#entrylist"
   get "/userlist" => "users#userlist"
   get "/users/edit/:id" => "users#edit"
   #devise_for :users do
