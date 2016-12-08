@@ -8,5 +8,6 @@ class ResultsController < ApplicationController
 		#@contests = Contest.order(sort_column + " " + sort_direction)
 		@votes = Vote.group("entry_id")
 		#@user=User.find_by_id(@entries)
+		@entry=Entry.all
 	end
 end

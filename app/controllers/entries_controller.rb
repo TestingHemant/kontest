@@ -4,20 +4,17 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
+    @entry = Entry.all
     @entries = Entry.paginate(:page=>params[:page],:per_page=>10).recent
     #@entries = Entry.all
   end
 
   def mycontest
-    #@appliedprogram = Appliedprogram.find_by_id(params[:id])
-    #@program=Program.find_by_id(@appliedprogram.program_id)
     @user = User.find(current_user.id)
     @userentries = Entry.where(user_id: @user)
     if @userentries.blank?
       render "entries/nocontests"
     end
-    #@contests = Contest.find(params[@entries.contest_id])
-    #Entry.find_by_user_id(params[:current_user_id])
   end
   # GET /entries/1
   # GET /entries/1.json
@@ -72,7 +69,7 @@ class EntriesController < ApplicationController
 
   # PATCH/PUT /entries/1
   # PATCH/PUT /entries/1.json
-  def update
+  def update    
     respond_to do |format|
       if @entry.update(entry_params)
         format.html { redirect_to @entry, notice: 'Entry was successfully updated.' }
@@ -80,6 +77,24 @@ class EntriesController < ApplicationController
       else
         format.html { render :edit }
         format.json { render json: @entry.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def overide
+    @user=User.find(current_user.id)
+    @entry=Entry.find(params[:id])
+    params[:entry][:votes] = params[:upvotes]
+    respond_to do |format|
+      if @entry.update_attributes(params[:entry].permit(:votes))
+        flash[:notice] =  "Vote counts updated successfully."
+        redirect_to "/results"
+        #format.html { redirect_to "/results", notice: 'Vote counts updated successfully.' }
+        #format.json { render :show, status: :ok, location: @entry }
+      else
+        flash[:notice] =  "Not Editable"
+        #format.html { render :edit }
+        #format.json { render json: @entry.errors, status: :unprocessable_entity }
       end
     end
   end

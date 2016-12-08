@@ -1,3 +1,9 @@
+<script type="text/javascript">
+	 $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.upvote').modal();
+  });      
+</script>
 <div class="col s12 m12 l12 center">
   <p id="notice"><%= notice %></p>
 </div>
@@ -25,7 +31,7 @@
 	<tr>
 		<th width="10%">ContestType</th>
 		<th width="20%">Contest Title</th>
-		<th width="30%">Entry By</th>
+		<th width="30%">Entry Details</th>
 		<th width="10%">Vote Count</th>
 		<th width="10%">Contest Status</th>
 		<th width="20%">Contest Dates</th>
@@ -35,12 +41,29 @@
 		<td><%= votes.entry.contest.contest_type %> (<%= link_to votes.entry.contest.id, "/contests/#{votes.entry.contest.id}" %>)</td>
 		<td><%= votes.entry.contest.title %></td>
 		<td>
+			<span style="color:grey;">Caption: </span><%= link_to votes.entry.caption, "/entries/#{votes.entry.id}" %><br>
 			<span style="color:grey;">Name: </span><%= votes.entry.user.name %><br>
 			<span style="color:grey;">FB Email: </span><%= votes.entry.user.email %><br>
 			<span style="color:grey;">Entry Email: </span><%= votes.entry.email %><br>
 			<span style="color:grey;">Mobile : </span><%= votes.entry.mobile %><br>
 		</td>
-		<td><%= pluralize(votes.entry.votes.count, "vote") %></td>
+		<td>
+			<%= pluralize(votes.entry.votes.count, "vote") %>
+			<%#= form_tag entries_path, method: :post do |f| %>	        
+		        <!--div class = "">
+		            <%#= text_field :upvotes,:class=>"form-control col m6 l6"%>
+		        </div>
+		        <div class = "">
+		            <%#= submit_tag 'Overide', :controller=>"entries",:action=>"overide", class: 'btn btn-success' %>
+		            <%#= link_to("overide",overide_entry_path(votes.entry.id,:votes => "10"),method: :post,:id=>"vote") %>
+		        </div>
+		    <%# end %>
+			
+			<%#= form_tag(results_path, :method => "get", id: "up_vote", html: {class: "custom-form"}) do %>
+				<%#= text_field_tag :votes, params[:votes],:class=>"form-control",:size=>5 %>
+				<%#= link_to "Overide",:class=>"btn",:controller=>"entries",:action=>"overidevotecount" %>
+			<%#end%>-->
+		</td>
 		<td><%= votes.entry.contest.status.camelize %></td>
 		<td>
 			<b>Start Date</b>: <%= votes.entry.contest.start_date.to_date %><br>

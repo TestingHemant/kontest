@@ -5,12 +5,20 @@ Rails.application.routes.draw do
   #devise_for :users
   #devise_for :users
   #resources :entries
+  resources :entries
   resources :entries do
     member do
       post 'upvote'
+      post 'overide'
     end
   end
-  resources :results
+  
+  resources :results 
+  #resources :entries do
+  #  member do
+  #    post 'overide'
+    #resources :votes
+  #end
   #resources :contests
   #get '/auth/:provider', to: 'sessions#create'
   #get 'auth/failure', to: redirect('/')
