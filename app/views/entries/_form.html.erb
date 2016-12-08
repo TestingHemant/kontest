@@ -74,8 +74,8 @@
     <%= f.submit "Add Entries",:class=>"btn waves-effect waves-light" %>
   </div>
   <div class="right">
-    <%= link_to 'Show', @entry %> |
-    <%= link_to 'Back', "/admin"%><%#entries_path %>
+    <%#= link_to 'Show', @entry %> |
+    <%= link_to 'Back', url_for(:back)%><%#entries_path %>
   </div>
 </div>
 <% end %>

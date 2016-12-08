@@ -98,8 +98,8 @@
         <%= f.submit "Update",:class=>"btn waves-effect waves-light" %>
       </div>
       <div class="right">
-        <%= link_to 'Show', @entry %> |
-        <%= link_to 'Back', entries_path %>
+        <%#= link_to 'Show', @entry %>
+        <%= link_to 'Back', url_for(:back) %>
       </div>
     </div>
     <% end %>
