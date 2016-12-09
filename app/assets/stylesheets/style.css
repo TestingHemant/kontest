@@ -216,3 +216,6 @@ form{
 .profile-header {
     margin-top: 43px;
 }
+table th, td {
+    padding: 15px !important;
+}

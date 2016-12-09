@@ -9,6 +9,11 @@ class Contest < ActiveRecord::Base
 	scope :by_status, -> status { where(status: status) }
 	scope :recent, -> {order("contests.created_at DESC")}
     
+    def self.search(search)
+    	#where("title LIKE ?", "%#{search}%")
+    	where("id = ?", "#{search}")
+    end
+
     def same_status?
      status == "active" || status="Active"
     end

@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get "/entrylist" => "entries#entrylist"
   get "/userlist" => "users#userlist"
   get "/users/edit/:id" => "users#edit"
+  get "/winners" => "results#winners"
   #devise_for :users do
   #  get '/users/sign_out' => 'devise/sessions#destroy'
   #end

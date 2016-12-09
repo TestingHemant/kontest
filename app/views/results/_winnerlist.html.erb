@@ -1,0 +1,26 @@
+<% @contests.each do |contest| %>
+<p>
+	<b>Top 3 entries for <%= contest.title.camelize %> (Contest-Id: <%= link_to(contest.id,contest_path(contest.id)) %>) are:</b>
+</p>
+	<table class="table-responsive table-bordered" style="padding:5px;">
+		<tr>
+			<th width="30%">Entry</th>
+			<th width="30%">Participant</th>
+			<th width="30%">Total Votes</th>
+		</tr>		
+		<% @entries.each do |entry| %>
+		<tr>
+			<td>
+				<%= image_tag entry.image.url(:thumb) %>
+				<%#= image_tag(entry.image, :class=> :medium) %>
+			</td>
+			<td>
+				<%= entry.user.name %>
+			</td>
+			<td>
+				<%= entry.votes.count %>		
+			</td>
+		</tr>
+		<% end -%>
+	</table>
+<% end %>

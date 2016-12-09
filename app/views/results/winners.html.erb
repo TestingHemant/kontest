@@ -1,0 +1,30 @@
+<div class="col s12 m12 l12 center">
+  <p id="notice"><%= notice %></p>
+</div>
+<div class="col hide-on-small-and-below m1 l1">&nbsp;</div>
+<div class="col s12 m10 l10 condesc" style="font-size:14px;">
+	<div class="center">
+		<h5>Find Winners By Contest Id</h5>
+		<hr>
+		<div class="col s3 m3 l3">&nbsp;</div>
+		<div class="col s6 m6 l6">
+			<%= form_tag(winners_path, :method => "get", id: "search-form") do %>
+				<div class="col s6 m6 l6">
+					<%= text_field_tag :search, params[:search], placeholder: "Enter Contest ID" %>
+				</div>
+				<div class="col s6 m6 l6 left-align">
+					<%= submit_tag "Search", :class=>"btn" %>
+				</div>
+			<% end %>
+		</div>
+		<div class="col s3 m3 l3">&nbsp;</div>
+	</div>
+	<div class="col s12 m12 l12" style="margin-top:5%;">
+		<% if @contests.present? %>
+			<%= render "results/winnerlist" %>
+		<% else %>
+			<p class="center red-text"> Please check, either contest is ongoing or contest doesn't exists with <%= params[:search] %>.</p>
+		<% end %>
+	</div>
+</div>
+<div class="col hide-on-small-and-below m1 l1">&nbsp;</div>
