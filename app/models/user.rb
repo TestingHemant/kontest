@@ -23,6 +23,11 @@ class User < ActiveRecord::Base
         end        
         user.name = auth.info.name
         user.password = Devise.friendly_token[0,20]
+        if (auth.info.image)
+          user.image = auth.info.image
+        else
+          user.image = "/missing.png"
+        end
       end
   end
 
