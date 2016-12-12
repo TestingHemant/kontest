@@ -23,8 +23,6 @@
         <%= pluralize(@entry.votes.count, "vote") %> |  
       <%end%>      
       <%= link_to(image_tag("icons/Vote.png",:class=>"responsive-img",:width=>'15%'),upvote_entry_path(@entry),method: :post,:id=>"vote") %>
-      <%#= link_to(image_tag("icons/Voted.png",:class=>"responsive-img",:width=>'15%'),upvote_entry_path(@entry),method: :post,:id=>"voted") %>
-      <!--Votes : <%= @entry.votes %>-->
     </div>
     <div class="col s12 m6 l6">
       Participant Name : <b><%= @entry.caption %></b>
@@ -40,12 +38,14 @@
     <% @relentry.each do |relentry| %>
     <% if relentry.id != @entry.id %>
       <div class="col s6 m3 l3">
-        <div class="col s12 m12 l12 center">
-          <%= link_to(image_tag(relentry.image, :class=>"relatedimg"),"/entries/#{relentry.id}") %>
-        </div>
-        <div class="col s12 m12 l12 center" style="margin-top:1%">
-          <%= relentry.caption %>
-        </div>
+        <div class="card">
+          <div class="card-image">
+            <%= link_to(image_tag(relentry.image, :class=>'responsive-img',:style=>"padding:2px"),"/entries/#{relentry.id}") %>
+          </div>
+          <div class="center">
+            <p><%= relentry.caption %></p>
+          </div>
+        </div> 
       </div>
     <% end %>
     <%end%>
