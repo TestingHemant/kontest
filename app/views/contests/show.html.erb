@@ -3,7 +3,7 @@
 <!--script src="/assets/js/libs/jquery.js"></script>
 <script src="flipclock.min.js"></script>
 <script src="/assets/javascripts/countdown.js"></script-->
-
+<%= tp = 0 %>
 <div class="col s12 m12 l12">
   <p id="notice"><%= notice %></p>
 </div>
@@ -101,10 +101,15 @@
       <div class="" style="margin-top:1%;">
         <h5 class="orange-text text-darken-1">Top 3 Entries So Far..</h5>
         <% @contest.entries.each do |entry| %>
-          <div class="col s6 m4 l4 conimage">              
-              <%= image_tag(entry.image, :class=>"") %>              
-              <p><%= entry.caption %></p>
-          </div>
+          <% if tp <= 3 %>
+            <% if entry? %>
+            <div class="col s6 m4 l4 conimage">              
+                <%= image_tag(entry.image, :class=>"") %>              
+                <p><%= entry.caption %></p>
+            </div>
+          <% end %>
+          <%= tp = tp +1 %>
+          <% end %>
         <% end %>
         </table>
       </div>  
