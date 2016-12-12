@@ -97,23 +97,23 @@
         </div>
       <% end %>
     </div>
-    <div class="col s12 m12 l12 condesc">
+    <!--div class="col s12 m12 l12 condesc">
       <div class="" style="margin-top:1%;">
         <h5 class="orange-text text-darken-1">Top 3 Entries So Far..</h5>
-        <% @contest.entries.each do |entry| %>
-          <% if tp <= 3 %>
-            <% if entry? %>
+        <%# @contest.entries.each do |entry| %>
+          <%# if tp <= 3 %>
+            <%# if entry %>
             <div class="col s6 m4 l4 conimage">              
-                <%= image_tag(entry.image, :class=>"") %>              
-                <p><%= entry.caption %></p>
+                <%#= image_tag(entry.image, :class=>"") %>              
+                <p><%#= entry.caption %></p>
             </div>
-          <% end %>
-          <%= tp = tp +1 %>
-          <% end %>
-        <% end %>
+          <%# end %>
+          <%#= tp = tp +1 %>
+          <%# end %>
+        <%# end %>
         </table>
       </div>  
-    </div>
+    </div-->
   </div>
 </div>
 <div class="col hide-on-small-and-below m2 l2">&nbsp;</div>

@@ -42,7 +42,7 @@ class EntriesController < ApplicationController
     params[:entry][:status]="Submitted"
     params[:entry][:user_id]=current_user.id
     @entry = @contest.entries.create(entry_params)
-    redirect_to contest_path(@contest)
+    redirect_to entry_path(@entry)
     #@entry = Entry.new(entry_params)
 
     #respond_to do |format|
