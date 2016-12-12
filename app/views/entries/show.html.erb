@@ -10,7 +10,7 @@
 <div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
 <div class="col s12 m8 l8" style="">  
   <div class="col s12 m12 l12">
-    <div style="">
+    <div class="center">
       <%= image_tag(@entry.image,:class=>'responsive-img center',:"max-width"=>'100%') %>
     </div>
     <div class="col s12 m6 l6" style="margin-top:2%">
@@ -33,22 +33,22 @@
       Shares : <% if @entry.shares %> <%=@entry.shares %><%else%>No Shares<%end%>
     </div>
   </div>
+  <div class="col s12 m12 l12 center" style="margin-top:2%">
+    <h5><span class='heading'>Related Entries</span></h5>
+  </div>
+  <div class="col s12 m12 l12" style="margin-top:2%">
+    <% @relentry.each do |relentry| %>
+    <% if relentry.id != @entry.id %>
+      <div class="col s6 m3 l3">
+        <div class="col s12 m12 l12 center">
+          <%= link_to(image_tag(relentry.image, :class=>"relatedimg"),"/entries/#{relentry.id}") %>
+        </div>
+        <div class="col s12 m12 l12 center" style="margin-top:1%">
+          <%= relentry.caption %>
+        </div>
+      </div>
+    <% end %>
+    <%end%>
+  </div>
 </div>
 <div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
-<div class="col s12 m12 l12">
-  <div class="center" style="margin-bottom:2%;">
-    <h5><span class='heading'>Related</span></h5>
-  </div>
-  <div class="col m3 l3">
-    <%= image_tag(@entry.uploaded_image, :class=>"relatedimg") %>
-  </div>
-  <div class="col m3 l3">
-    <%= image_tag(@entry.uploaded_image, :class=>"relatedimg") %>
-  </div>
-  <div class="col m3 l3">
-    <%= image_tag(@entry.uploaded_image, :class=>"relatedimg") %>
-  </div>
-  <div class="col m3 l3">
-    <%= image_tag(@entry.uploaded_image, :class=>"relatedimg") %>
-  </div>
-</div>

@@ -23,6 +23,7 @@ class EntriesController < ApplicationController
   # GET /entries/1
   # GET /entries/1.json
   def show
+    @relentry = Entry.where(contest_id: @entry.contest_id)
   end
 
   # GET /entries/new

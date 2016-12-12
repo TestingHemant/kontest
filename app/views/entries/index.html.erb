@@ -4,7 +4,7 @@
 <div class="col hide-on-small-and-below m1 l1">&nbsp;</div>
 <div class="col s12 m10 l10">
   <div class="center">
-    <h5>Entries</h5><%= link_to "Admin Panel","/admin" %>
+    <h5>Entries</h5><% if current_user.admin? %><%= link_to "Admin Panel","/admin" %><%end%>
   </div>
   <div class="condesc">
   <table class="table-responsive bordered highlight">
@@ -62,9 +62,11 @@
           <td><%= entry.rejected_reason %></td>
           <td>
             <%= link_to 'Show', entry %><br>
+            <% if current_user.admin? %>
             <%= link_to 'Edit', edit_entry_path(entry) %><br>
             <%#= link_to 'Select As Winner', "/" %>
             <%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+            <% end %>
           </td>
         </tr>
       <% end %>
@@ -75,6 +77,6 @@
 </div>
 </div>
 <div class="col s12 m10 l10 pagination" style="text-align:right">
-   <%= will_paginate @entry, renderer: BootstrapPagination::Rails %>
+   <%= will_paginate @entries, renderer: BootstrapPagination::Rails %>
 </div>
 <div class="col hide-on-small-and-below m1 l1">&nbsp;</div>
