@@ -1,3 +1,9 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>
+<!--script src="/assets/js/libs/jquery.js"></script>
+<script src="flipclock.min.js"></script>
+<script src="/assets/javascripts/countdown.js"></script-->
+
 <div class="col s12 m12 l12">
   <p id="notice"><%= notice %></p>
 </div>
@@ -15,10 +21,41 @@
         <span><h4 class="orange-text text-darken-1"><%= @contest.title %></h4></span>
       </p>
       <p><%= @contest.description.html_safe %></p>
+      <hr>
       <p><b>Steps to Participate</b></p>
       <p><%= @contest.steps.html_safe %></p>  
-      <p>Top 3 will will <b><%= @contest.first_prize %></b></p>
-      <p>Entry Valid from: <%= @contest.start_date.to_date %> Till <%= @contest.end_date.to_date %></p>
+      <hr>
+      <p><b>Prizes</b>
+      <p>
+        1st - 
+          <% if @contest.first_prize? %>
+            <b><span class="orange-text"><%= @contest.first_prize %></span></b>
+          <% else %>
+            Will be announced. 
+          <% end %>        
+      </p>
+      <p>
+        2nd -           
+            <% if @contest.second_prize? %>
+              <span class="orange-text"><b><%= @contest.second_prize %></b></span>
+            <% else %>
+              Will be announced. 
+            <% end %>
+      </p>
+      <p>
+        3rd - 
+          <% if @contest.third_prize? %>
+            <span class="orange-text"><b><%= @contest.third_prize %></b></span>
+          <% else %>
+            Will be announced. 
+          <% end %>
+      </p>
+      <hr>
+      <p class="">
+        <!--*Contest closes in <div id="timer"></div><br-->
+        Contest closes in <br><div id="timer"></div>
+      </p>
+      <!--p>Entry Valid from: <%= @contest.start_date.to_date %> Till <%= @contest.end_date.to_date %></p-->
     </div>
     <div class="partform condesc">
       <div class="center">
@@ -77,3 +114,35 @@
 <div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
 <%#= link_to 'Edit', edit_contest_path(@contest) %> 
 <%#= link_to 'Back', contests_path %>
+<script>
+  //var timer = document.getElementById("timer")
+  //  , now = Date.now()/1000, endDate1 = new Date('<%= @contest.end_date.to_time %>');
+  //var deadline = endDate1 - now;
+   //console.log(endDate1);
+   //console.log(now);
+  //timer.innerHTML = countdown(deadline).toString();
+  //setInterval(function(){
+  //  timer.innerHTML = countdown(deadline ).toString();
+  //}, 1000);
+</script>
+<script type="text/javascript">
+  $(function(){
+    FlipClock.Lang.Custom = { days:'Days', hours:'Hours', minutes:'Minutes', seconds:'Seconds' };
+    var opts = {
+        clockFace: 'DailyCounter',
+        countdown: true,
+        language: 'Custom'
+    };
+    var endDate = new Date("<%= @contest.end_date.to_time %>"); //What date to start counting from
+    var now = Math.floor(Date.now()/1000); //Current timestamp in seconds
+    var clockStart = endDate.getTime()/1000 - now; //What to set the clock at when page loads
+    //console.log(endDate);//alert(endDate);
+    //var clock2 = $('#timer1').FlipClock(opts).setTime(clockStart); //Start clock
+    var clock = $('#timer').FlipClock(clockStart,{clockFace: 'DailyCounter', countdown: true});
+    //var startDate = new Date('Fri Jan 8 2016 12:00:00 GMT+0200'); //What date to start counting from
+    //var now = Math.floor(Date.now()/1000); //Current timestamp in seconds
+    //var clockStart = now - startDate.getTime()/1000; //What to set the clock at when page loads
+
+    //var clock2 = $('#timer1').FlipClock(opts).setTime(clockStart); //Start clock
+  });
+</script>

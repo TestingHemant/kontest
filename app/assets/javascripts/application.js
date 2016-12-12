@@ -15,5 +15,6 @@
 //= require jquery.turbolinks
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require flipclock.min
 //= require bootstrap
 //= require_tree .

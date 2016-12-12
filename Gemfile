@@ -54,6 +54,9 @@ gem 'devise'
 #font-awesome
 gem "font-awesome-rails"
 
+#flipclock for timer
+gem 'flipclockjs-rails', '~> 0.7.7'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

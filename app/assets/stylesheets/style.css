@@ -54,9 +54,9 @@ select{
 .condesc ul {
 	margin-top: 10px;
 }
-ul:not(.browser-default) li {
+/*ul:not(.browser-default) li {
     list-style-type: disc !important;
-}
+}*/
 .card .card-content ul li{
 	font-size: 15px;
     list-style-type: disc !important;
@@ -218,4 +218,22 @@ form{
 }
 table th, td {
     padding: 15px !important;
+}
+.flip-clock-wrapper ul.play li.flip-clock-active { 
+    -webkit-animation: asd .5s .5s linear both; z-index: 2 !important; 
+    animation: asd .5s .5s linear both; z-index: 2 !important; 
+}
+.flip-clock-wrapper{
+    font: normal 20px "Helvetica Neue",Helvetica,sans-serif !important;
+}
+#timer {
+    transform-origin: 0 0;
+    transform: scale(.50);
+    -ms-transform: scale(.50);
+    -webkit-transform-origin: 0 0;
+    -webkit-transform: scale(.50);
+    -o-transform-origin: 0 0;
+    -o-transform: scale(.50);
+    -moz-transform-origin: 0 0;
+    -moz-transform: scale(.50);
 }
