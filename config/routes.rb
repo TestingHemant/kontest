@@ -15,9 +15,10 @@ Rails.application.routes.draw do
   
   resources :results 
   #resources :users do
-  #  member do
-  #    post 'overide'
+  ##  member do
+  #    post 'makeadmin'
     #resources :votes
+  #  end
   #end
   #resources :contests
   #get '/auth/:provider', to: 'sessions#create'
@@ -36,6 +37,8 @@ Rails.application.routes.draw do
   get "/userlist" => "users#userlist"
   get "/users/edit/:id" => "users#edit"
   get "/winners" => "results#winners"
+  get "makeadmin" => "users#makeadmin"
+  get "makeparticipant" => "users#makeparticipant"
   #devise_for :users do
   #  get '/users/sign_out' => 'devise/sessions#destroy'
   #end

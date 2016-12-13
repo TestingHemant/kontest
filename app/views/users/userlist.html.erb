@@ -9,18 +9,18 @@
 	<table class="table-bordered">
 	<tr>
 		<th width="8%">Id</th>
-		<th width="25%">UID</th>
-		<th width="12%">Name</th>
+		<th width="20%">UID</th>
+		<th width="17%">Name/Pic</th>
 		<th width="12%">Role</th>		
 		<th width="8%">Provider</th>
-		<th width="25%">SignIn Details</th>
-		<th width="10%">Actions</th>
+		<th width="20%">SignIn Details</th>
+		<th width="15%">Actions</th>
 	</tr>
 	<% @users.each do |user| %>
 	<tr>
 		<td><%= user.id %></td>
 		<td><%= user.uid %></td>
-		<td><%= user.name %></td>
+		<td><%= image_tag(user.image, :width=>"50px;")%><br><%= user.name %></td>
 		<td><%= user.role %></td>
 		<td><%= user.provider %></td>
 		<td>
@@ -30,8 +30,10 @@
 			<span style="color:grey">Sign Count</span> : <%= user.sign_in_count %>
 		</td>
 		<td>
-			<%#= link_to 'Show', contest %><br>
-        	Pending<%= link_to 'Edit', "#" %><%#/users/edit/#{user.id}" %><br>
+			<%= link_to 'Make Admin', :controller=> "users", :action=>"makeadmin", :id => user.id %><br>
+        	<%= link_to 'Make Normal', :controller=> "users", :action=>"makeparticipant", :id => user.id %>
+        	<%#= link_to 'Show', contest %>
+        	<%#= link_to 'Edit', "#" %><%#/users/edit/#{user.id}" %>
         	<%#= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
 		</td>
 	</tr>

@@ -25,5 +25,35 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
-  end
+  	end
+
+  	#make admin user
+  	def makeadmin
+  		@user=User.find(params[:id])
+  		if @user.role != 'admin'
+  			@user.update_attributes(:role => 'admin')
+  			flash[:notice] = "#{@user.name} is marked as Admin now"  			
+  		end
+  		if @user.role == "admin" || @user.role == "Admin"
+  			flash[:notice] = "#{@user.name} is already Admin"
+  		else
+  			flash[:notice] = "Something went wrong"
+  		end
+      redirect_to "/userlist"
+  	end
+
+  	#make normal user
+  	def makeparticipant
+  		@user=User.find(params[:id])
+  		if @user.role != 'participant'
+  			@user.update_attributes(:role => 'participant')
+  			flash[:notice] = "#{@user.name} is marked as Normal user now"
+  		end
+  		if @user.role == "participant" || @user.role == "participant"
+  			flash[:notice] = "Role of #{@user.name} is already Participant"
+  		else
+  			flash[:notice] = "Something went wrong"
+  		end
+      redirect_to "/userlist"
+  	end
 end
