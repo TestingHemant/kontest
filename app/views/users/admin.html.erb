@@ -6,9 +6,26 @@
 	<div style="margin-bottom:2%;">
 		<h5>Admin Panel</h5>
 	</div>
-	<%= link_to "Add Contest", new_contest_path, :class=>"btn btn-small waves"%>
-	<%= link_to "Contest List", "/contestlist", :class=>"btn btn-small waves"%>
-	<%= link_to "User List", "/userlist", :class=>"btn btn-small waves"%>
-	<%= link_to "Entry List", "/entrylist", :class=>"btn btn-small waves"%>
+	<table class="responsive-table">
+		<tr>
+			<td class="center">
+				<%= link_to "Add Contest", new_contest_path, :class=>"btn btn-small waves"%>
+			</td>
+			<td class="center">
+				<%= link_to "Contest List", "/contestlist", :class=>"btn btn-small waves"%>
+			</td>
+			<td class="center">
+				<%= link_to "User List", "/userlist", :class=>"btn btn-small waves"%>
+			</td>
+			<td class="center">
+				<%= link_to "Entry List", "/entrylist", :class=>"btn btn-small waves"%>
+			</td>
+		</tr>
+		<tr>
+			<td class="center">
+				<%= link_to "Overide Votes", results_path, :class=>"btn btn-small waves"%>
+			</td>
+		</tr>
+	</table>	
 </div>
 <div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
