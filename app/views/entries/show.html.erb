@@ -28,7 +28,8 @@
       Participant Name : <b><%= @entry.caption %></b>
     </div>
     <div class="col s12 m6 l6" style="text-align:right">
-      Shares : <% if @entry.shares %> <%=@entry.shares %><%else%>No Shares<%end%>
+      <%= social_share_button_tag("Share on Facebook", :url=>"http://104.199.79.148/entries/#{@entry.id}", :image=>@entry.image, desc: @entry.caption) %>
+      <!--Shares : <%# if @entry.shares %> <%=@entry.shares %><%#else%>No Shares<%#end%>-->
     </div>
   </div>
   <div class="col s12 m12 l12 center" style="margin-top:2%">

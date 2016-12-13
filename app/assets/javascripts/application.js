@@ -16,5 +16,6 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require flipclock.min
+//= require social-share-button
 //= require bootstrap
 //= require_tree .

@@ -22,6 +22,9 @@ gem 'seed_dump'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
+#socialsharing
+gem 'social-share-button', '~> 0.1.6'
+
 #pagination
 gem "will_paginate"
 gem "will_paginate-bootstrap"
