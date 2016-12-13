@@ -1,6 +1,6 @@
 <% @contests.each do |contest| %>
 <p>
-	<b>Top 3 entries for <%= contest.title.camelize %> (Contest-Id: <%= link_to(contest.id,contest_path(contest.id)) %>) are:</b>
+	<b>Top entries</b>(max 20)<b> for <%= contest.title.camelize %> (Contest-Id: <%= link_to(contest.id,contest_path(contest.id)) %>) are:</b>
 </p>
 	<table class="table-responsive table-bordered" style="padding:5px;">
 		<tr>
@@ -11,7 +11,7 @@
 		<% @entries.each do |entry| %>
 		<tr>
 			<td>
-				<%= image_tag entry.image.url(:thumb) %>
+				<%= link_to(image_tag(entry.image.url(:thumb)),entry_path(entry.id)) %>
 				<%#= image_tag(entry.image, :class=> :medium) %>
 			</td>
 			<td>

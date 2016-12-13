@@ -8,13 +8,17 @@ class ResultsController < ApplicationController
 	end
 
 	def winners
-		@contests = Contest.all
+		#@contests = Contest.all
 		if params[:search]
 		    @contests = Contest.search(params[:search]).order("created_at DESC")
-		else
-		    flash[:notice]="No such contest found"
+		    if @contests == ""
+		    	flash[:notice] = "Contests not found, please check id"
+		    end
 		end
-		@entries = Entry.where('contest_id = ?',params[:search])
+		@entries = Entry.where('contest_id = ?',params[:search]).limit(20)
+		if !@entries
+			flash[:notice] = "Test"
+		end
 		@entries.sort { |e1,e2| e1.votes.length <=> e2.votes.length }
 	end
 end

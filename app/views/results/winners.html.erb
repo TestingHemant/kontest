@@ -19,11 +19,13 @@
 		</div>
 		<div class="col s3 m3 l3">&nbsp;</div>
 	</div>
-	<div class="col s12 m12 l12" style="margin-top:5%;">
+	<div class="col s12 m12 l12 center" style="margin-top:5%;">
 		<% if @contests.present? %>
 			<%= render "results/winnerlist" %>
 		<% else %>
-			<p class="center red-text"> Please check, either contest is ongoing or contest doesn't exists with <%= params[:search] %>.</p>
+			<p class="center red-text">
+				Please enter valid contest id to find top entries.<%#= params[:search] %>.
+			</p>
 		<% end %>
 	</div>
 </div>
