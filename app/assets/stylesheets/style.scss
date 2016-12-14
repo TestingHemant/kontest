@@ -252,3 +252,22 @@ table th, td {
   margin-top: 3px;
   background: image-url('share_facebook.png') no-repeat center center !important;
 }
+.DocumentList
+{
+    overflow-x:scroll;
+    overflow-y:hidden;
+    height:auto;
+    width:100%;
+    padding: 0 15px;
+}
+
+.DocumentItem
+{
+    /*border:1px solid black;*/
+    padding:0;
+    height:auto;
+}
+
+.list-inline {
+  white-space:nowrap;
+}

@@ -5,6 +5,7 @@ class ContestsController < ApplicationController
   # GET /contests.json
   def index
     #@user=User.find(params[:user_id])
+    @homeentries = Entry.recent
     @contests = Contest.all
     @contests = Contest.where("end_date >= ?", Time.zone.now.beginning_of_day)
     if @contests.blank?
