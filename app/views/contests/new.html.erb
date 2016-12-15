@@ -1,3 +1,11 @@
+<script type="text/javascript">
+  $( document ).ready(function() {
+       $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 3 // Creates a dropdown of 15 years to control year
+  });
+}); 
+</script>
 <div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
 <div class="col s12 m8 l8">
 	<div class="center">
@@ -21,7 +29,7 @@
   <div class="form-group">
     <%= f.label :contest_type,:class=>"control-label col m3 l3" %>
     <div class="col m6 l6">
-      <%= f.select :contest_type,['Mega','Monthly','Weekly','Daily'],:class=>"form-control" %>
+      <%= f.select :contest_type,['Select Contest Type','Mega','Monthly','Weekly','Daily'],:class=>"form-control" %>
     </div>
     <span class="col m3 l3">&nbsp;</span>
   </div>
@@ -79,7 +87,7 @@
   <div class="col s6 m6 l6">
     <div class="form-group">
       <%= f.label :start_date %>
-      <%= f.date_select :start_date %>
+      <%= f.date_select :start_date, :class=>"datepicker" %>
     </div>
     <span class="col m3 l3">&nbsp;</span>
   </div>

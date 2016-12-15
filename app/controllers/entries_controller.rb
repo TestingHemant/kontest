@@ -42,7 +42,13 @@ class EntriesController < ApplicationController
     params[:entry][:status]="Submitted"
     params[:entry][:user_id]=current_user.id
     @entry = @contest.entries.create(entry_params)
-    redirect_to entry_path(@entry)
+    if @entry.save
+      redirect_to entry_path(@entry)
+      flash[:success] = "Entry submitted successfully"
+    else
+      flash[:error] = "All fields are mandatory"
+      redirect_to :back
+    end
     #@entry = Entry.new(entry_params)
 
     #respond_to do |format|

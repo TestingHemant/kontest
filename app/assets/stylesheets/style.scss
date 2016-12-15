@@ -271,3 +271,15 @@ table th, td {
 .list-inline {
   white-space:nowrap;
 }
+.error_message{
+    padding:5px;
+    background: #EC407A !important;
+    border:1px dotted black;
+    color:white;
+}
+#success{
+    padding:5px;
+    background: #35AC19 !important;
+    border:1px dotted black;
+    color:white;
+}
