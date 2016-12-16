@@ -6,11 +6,27 @@ class ContestsController < ApplicationController
   def index
     #@user=User.find(params[:user_id])
     @homeentries = Entry.recent
-    @contests = Contest.all
-    @contests = Contest.where("end_date >= ?", Time.zone.now.beginning_of_day)
+    @contests = Contest.by_status('Active').where("end_date >= ?", Time.zone.now.beginning_of_day)
+    @megacontests = Contest.by_status('Active').where("end_date >= ?", Time.zone.now.beginning_of_day).where("contest_type = ?","Mega")
+    @monthlycontests = Contest.by_status('Active').where("end_date >= ?", Time.zone.now.beginning_of_day).where("contest_type = ?","Monthly")
+    @weeklycontests = Contest.by_status('Active').where("end_date >= ?", Time.zone.now.beginning_of_day).where("contest_type = ?","Weekly")
+    @dailycontests = Contest.by_status('Active').where("end_date >= ?", Time.zone.now.beginning_of_day).where("contest_type = ?","Daily")
+    
     if @contests.blank?
       render "shared/nocontest"
     end
+    #if @megacontests.blank?
+    #  render "shared/nocontest"
+    #end
+    #if @monthlycontests.blank?
+    #  render "shared/nocontest"
+    #end
+    #if @weeklycontests.blank?
+    #  render "shared/nocontest"
+    #end
+    #if @dailycontests.blank?
+    #  render "shared/nocontest"
+    #end
   end
   def contestlist
     #@program = Program.paginate(:page=>params[:page],:per_page=>10).by_status('active').recent  
@@ -34,17 +50,21 @@ class ContestsController < ApplicationController
   # POST /contests.json
   def create
     #params[:user_id]=current_user.id
-    params[:contest][:user_id]=current_user.id
-    @contest = Contest.new(contest_params)    
-    respond_to do |format|
-      if @contest.save
-        format.html { redirect_to @contest, notice: 'Contest was successfully created.' }
-        format.json { render :show, status: :created, location: @contest }
-      else
-        format.html { render :new }
-        format.json { render json: @contest.errors, status: :unprocessable_entity }
+    if params[:contest_type] == "Select Contest Type"
+      flash[:error] = "Please select Contest Type"
+    else
+      params[:contest][:user_id]=current_user.id
+      @contest = Contest.new(contest_params)    
+      respond_to do |format|
+        if @contest.save
+          format.html { redirect_to @contest, notice: 'Contest was successfully created.' }
+          format.json { render :show, status: :created, location: @contest }
+        else
+          format.html { render :new }
+          format.json { render json: @contest.errors, status: :unprocessable_entity }
+        end
       end
-    end
+    end    
   end
 
   # PATCH/PUT /contests/1

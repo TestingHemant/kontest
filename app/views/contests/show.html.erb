@@ -78,9 +78,11 @@
       <!--p>Entry Valid from: <%= @contest.start_date.to_date %> Till <%= @contest.end_date.to_date %></p-->
     </div>
     <div class="partform condesc">
-      <div class="center error_message">
-        <%= error %>
-      </div>
+      <% if error %>
+        <div class="center error_message">
+          <%= error %>
+        </div>
+      <% end %>
       <div class="center">
         <h5>Participate Now</h5>
       </div>
