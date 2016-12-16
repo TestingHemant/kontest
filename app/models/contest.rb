@@ -10,8 +10,8 @@ class Contest < ActiveRecord::Base
 	scope :recent, -> {order("contests.created_at DESC")}
     
     def validate_contest_type
-    	if :contest_type == "Select Contest Type"
-    		errors.add_to_base("Please select contest type")
+    	if self.contest_type == "Select Contest Type"
+    		errors[:base] << "Please select contest type"
     	end
     end
 
