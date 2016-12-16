@@ -1,35 +1,43 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Problems</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Mobile</th>
-      <th>Report type</th>
-      <th>Issue description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @problems.each do |problem| %>
-      <tr>
-        <td><%= problem.name %></td>
-        <td><%= problem.email %></td>
-        <td><%= problem.mobile %></td>
-        <td><%= problem.report_type %></td>
-        <td><%= problem.issue_description %></td>
-        <td><%= link_to 'Show', problem %></td>
-        <td><%= link_to 'Edit', edit_problem_path(problem) %></td>
-        <td><%= link_to 'Destroy', problem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Problem', new_problem_path %>
+<div class="col s12 m12 l12 center">
+  <p id="notice"><%= notice %></p>
+  <p id="success"><%= success %></p>
+</div>
+<div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
+<div class="col s12 m8 l8" style="">  
+  <div class="col s12 m12 l12">
+    <h5>Recent Contacts</h5>
+  </div>
+  <div class="col s12 m12 l12">
+    <table class="responsive-table bordered">
+      <thead>
+        <tr>
+          <th>Contacted By</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>Report type</th>
+          <th>Issue description</th>
+          <!--th colspan="3"></th-->
+        </tr>
+      </thead>
+      <tbody>
+        <% @problems.each do |problem| %>
+          <tr>
+            <td><%= problem.name %></td>
+            <td><%= problem.email %></td>
+            <td><%= problem.mobile %></td>
+            <td><%= problem.report_type %></td>
+            <td><%= problem.issue_description %></td>
+            <!--td><%#= link_to 'Show', problem %></td>
+            <td><%#= link_to 'Edit', edit_problem_path(problem) %></td>
+            <td><%#= link_to 'Destroy', problem, method: :delete, data: { confirm: 'Are you sure?' } %></td-->
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col s12 m12 l12 pagination" style="text-align:right">
+   <%= will_paginate @problems, renderer: BootstrapPagination::Rails %>
+</div>
+</div>
+<div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
+<%#= link_to 'New Problem', new_problem_path %>
