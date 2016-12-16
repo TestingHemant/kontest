@@ -1,3 +1,10 @@
+<!--head>
+<meta property="og:title" content="<%= @entry.caption %>" />
+<meta property="og:url" content="http://localhost:4001<%= entry_path(@entry)%>" />
+<meta property="og:image" content="http://localhost:4001<%= @entry.image.url%>" />
+<meta property="og:description" content="<%= @entry.caption %>" />
+<meta property="og:site_name" content="http://www.krazykontest.com" />
+</head-->
 <script type="text/javascript">
   $("#vote").click(function(){
         $("#vote").hide();
@@ -6,6 +13,7 @@
 </script>
 <div class="col s12 m12 l12 center">
   <p id="notice"><%= notice %></p>
+  <p id="success"><%= success %></p>
 </div>
 <div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
 <div class="col s12 m8 l8" style="">  
