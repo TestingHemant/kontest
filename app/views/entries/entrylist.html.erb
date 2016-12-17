@@ -1,5 +1,11 @@
 <div class="col s12 m12 l12">
-  <p id="notice"><%= notice %></p>
+  <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
+    <div class="col s12 m10 l10">
+    <% if notice %>
+      <p id="notice"><%= notice %></p>
+    <% end %>
+    </div>
+  <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
 </div>
 <div class="col hide-on-small-and-below m1 l1">&nbsp;</div>
 <div class="col s12 m10 l10">
@@ -66,9 +72,9 @@
           <td><%= entry.rejected_reason %></td>
           <td>
             <%= link_to 'Show', entry %><br>
-            <%= link_to 'Edit', edit_entry_path(entry) %><br>
+            <%= link_to 'Overide Votes', edit_entry_path(entry) %><br>
             <%#= link_to 'Select As Winner', "/" %>
-            <%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+            <%#= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %><br>
           </td>
         </tr>
       <% end %>

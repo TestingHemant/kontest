@@ -1,5 +1,11 @@
 <div class="col s12 m12 l12">
-  <p id="notice"><%= notice %></p>
+  <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
+    <div class="col s12 m10 l10">
+    <% if notice %>
+      <p id="notice"><%= notice %></p>
+    <% end %>
+    </div>
+    <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
 </div>
 <div class="col hide-on-small-and-below m1 l1">&nbsp;</div>
 <div class="col s12 m10 l10">
@@ -15,9 +21,9 @@
   <table class="table-responsive bordered highlight">
     <thead>
       <tr>
-        <th>Contest Link</th>
+        <th>Contest Details</th>
         <th width="15%">Your Submission</th>
-        <th>Votes/Shares</th>
+        <th>Votes</th>
         <th>Status</th>
         <th>Rejected Reason<br>(If Any)</th>
       </tr>
@@ -27,11 +33,12 @@
       <% @userentries.each do |entry| %>
         <tr>
           <td>
+            <p>Contest Id : <%= entry.contest_id %></p>
             <%= link_to "View Contest", "/contests/#{entry.contest_id}" %>
           </td>
           <td>
             <%if entry.image %>
-              <%= image_tag(entry.image, :class=>"relatedimg responsive-image") %>
+              <%= link_to(image_tag(entry.image, :class=>"myenimg responsive-image"),entry_path(entry.id)) %>
             <%else%>
               <p>No Image</p>
             <%end%>
@@ -44,7 +51,7 @@
               <p><%= entry.caption %></p>
             </div>
           </td>        
-          <td>
+          <td class="center">
             <%if entry.entryvotes %>
               <%= entry.entryvotes %>
             <%else%>
