@@ -4,7 +4,12 @@ class ProblemsController < ApplicationController
   # GET /problems
   # GET /problems.json
   def index
-    @problems = Problem.paginate(:page=>params[:page],:per_page=>10).recent
+    if current_user && current_user.admin?
+      @problems = Problem.paginate(:page=>params[:page],:per_page=>10).recent
+    else
+      flash[:notice] = "No such page exists"
+      redirect_to root_path
+    end
   end
 
   # GET /problems/1
@@ -19,6 +24,11 @@ class ProblemsController < ApplicationController
 
   # GET /problems/1/edit
   def edit
+    if current_user && current_user.admin?
+    else
+      flash[:notice] = "No such page exists"
+      redirect_to root_path
+    end
   end
 
   # POST /problems

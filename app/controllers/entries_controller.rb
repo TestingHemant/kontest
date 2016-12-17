@@ -10,7 +10,12 @@ class EntriesController < ApplicationController
   end
 
   def entrylist
-    @entries = Entry.paginate(:page=>params[:page],:per_page=>10).recent
+    if current_user && current_user.admin?
+      @entries = Entry.paginate(:page=>params[:page],:per_page=>10).recent
+    else
+      flash[:notice] = "No such page exists"
+      redirect_to root_path
+    end
   end
 
   def mycontest
@@ -33,6 +38,11 @@ class EntriesController < ApplicationController
 
   # GET /entries/1/edit
   def edit
+    if current_user && current_user.admin?
+    else
+      flash[:notice] = "No such page exists"
+      redirect_to root_path
+    end
   end
 
   # POST /entries

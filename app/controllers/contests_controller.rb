@@ -16,9 +16,21 @@ class ContestsController < ApplicationController
       render "shared/nocontest"
     end
   end
+
+  def completedcontest
+    @completed = Contest.by_status('Completed')
+    @upcoming = Contest.by_status('UpComing')
+    @suspended = Contest.by_status('Suspended')
+  end
+
   def contestlist
     #@program = Program.paginate(:page=>params[:page],:per_page=>10).by_status('active').recent  
-    @contests = Contest.paginate(:page=>params[:page],:per_page=>10).recent
+    if current_user && current_user.admin?
+      @contests = Contest.paginate(:page=>params[:page],:per_page=>10).recent
+    else
+      flash[:notice] = "No Such page found"
+      redirect_to root_path
+    end
   end
   # GET /contests/1
   # GET /contests/1.json
@@ -27,11 +39,21 @@ class ContestsController < ApplicationController
 
   # GET /contests/new
   def new
-    @contest = Contest.new
+    if current_user && current_user.admin?
+      @contest = Contest.new
+    else
+      flash[:notice] = "No Such page found"
+      redirect_to root_path
+    end
   end
 
   # GET /contests/1/edit
   def edit
+    if current_user && current_user.admin?
+    else
+      flash[:notice] = "No Such page found"
+      redirect_to root_path
+    end
   end
 
   # POST /contests
