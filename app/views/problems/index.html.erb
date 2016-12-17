@@ -1,5 +1,11 @@
 <div class="col s12 m12 l12 center">
-  <p id="notice"><%= notice %></p>
+  <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
+    <div class="col s12 m10 l10">
+    <% if notice %>
+      <p id="notice"><%= notice %></p>
+    <% end %>
+    </div>
+  <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
   <!--p id="success"><%#= success %></p-->
 </div>
 <div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
