@@ -198,21 +198,19 @@
 <div class="row">
   <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
   <div class="col s12 m10 l10">
-  <div class="DocumentList">
-      <ul class="list-inline">
+    <div class="DocumentList">
       <% @homeentries.each do |homeentries| %>
-        <li class="DocumentItem">
-          <div class="card">
-            <div clas="card-image">
-              <%= link_to(image_tag(homeentries.image.url(:medium),:class=>"relatedimg responsive-img"), entry_path(homeentries.id)) %>
-            </div>
-            <div class="card-content center">
-              <%= homeentries.caption %>
-            </div>
-          </div>          
-        </li>
-      <% end %>
-      </ul>
+      <div class="col s4 m3 l3 DocumentItem">
+      <div class="card">
+        <div class="card-image">
+          <%= link_to(image_tag(homeentries.image.url(:medium),:class=>"relatedimg responsive-img"), entry_path(homeentries.id)) %>
+        </div>
+        <div class="card-content center">
+          <%= homeentries.caption %>          
+        </div>
+      </div>  
+      </div>  
+      <% end %> 
     </div>
   </div>
   <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>

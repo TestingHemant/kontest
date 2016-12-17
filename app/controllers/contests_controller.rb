@@ -15,18 +15,6 @@ class ContestsController < ApplicationController
     if @contests.blank?
       render "shared/nocontest"
     end
-    #if @megacontests.blank?
-    #  render "shared/nocontest"
-    #end
-    #if @monthlycontests.blank?
-    #  render "shared/nocontest"
-    #end
-    #if @weeklycontests.blank?
-    #  render "shared/nocontest"
-    #end
-    #if @dailycontests.blank?
-    #  render "shared/nocontest"
-    #end
   end
   def contestlist
     #@program = Program.paginate(:page=>params[:page],:per_page=>10).by_status('active').recent  
