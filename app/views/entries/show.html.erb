@@ -33,7 +33,7 @@
       <%= link_to(image_tag("icons/Vote.png",:class=>"responsive-img",:width=>'15%'),upvote_entry_path(@entry),method: :post,:id=>"vote") %>
     </div>
     <div class="col s12 m6 l6">
-      Participant Name : <b><%= @entry.caption %></b>
+      Participant Name : <b><%= @entry.user.name %></b>
     </div>
     <div class="col s12 m6 l6" style="text-align:right">
       <%= social_share_button_tag("Share on Facebook", :url=>"http://104.199.79.148/entries/#{@entry.id}", :image=>@entry.image, desc: @entry.caption) %>
