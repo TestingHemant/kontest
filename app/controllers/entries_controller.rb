@@ -28,7 +28,7 @@ class EntriesController < ApplicationController
   # GET /entries/1
   # GET /entries/1.json
   def show
-    @relentry = Entry.where(contest_id: @entry.contest_id)
+    @relentry = Entry.by_status('Approved').where(contest_id: @entry.contest_id)
   end
 
   # GET /entries/new
@@ -93,7 +93,7 @@ class EntriesController < ApplicationController
   def update    
     respond_to do |format|
       if @entry.update(entry_params)
-        format.html { redirect_to @entry, notice: 'Entry was successfully updated.' }
+        format.html { redirect_to "/entries", notice: 'Entry was successfully updated.' }
         format.json { render :show, status: :ok, location: @entry }
       else
         format.html { render :edit }

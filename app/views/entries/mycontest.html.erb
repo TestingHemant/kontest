@@ -21,22 +21,22 @@
   <table class="table-responsive bordered highlight">
     <thead>
       <tr>
-        <th>Contest Details</th>
-        <th width="15%">Your Submission</th>
-        <th>Votes</th>
-        <th>Status</th>
-        <th>Rejected Reason<br>(If Any)</th>
+        <th class="center" width="15%">Contest Details</th>
+        <th class="center" width="25%">Your Submission</th>
+        <th class="center" width="15%">Votes</th>
+        <th class="center" width="20%">Status</th>
+        <th class="center" width="25%">Rejected Reason<br>(If Any)</th>
       </tr>
     </thead>
 
     <tbody class="krtext">
       <% @userentries.each do |entry| %>
         <tr>
-          <td>
+          <td class="center">
             <p>Contest Id : <%= entry.contest_id %></p>
             <%= link_to "View Contest", "/contests/#{entry.contest_id}" %>
           </td>
-          <td>
+          <td class="center">
             <%if entry.image %>
               <%= link_to(image_tag(entry.image, :class=>"myenimg responsive-image"),entry_path(entry.id)) %>
             <%else%>
@@ -67,7 +67,7 @@
               <!--p>No Shares yet</p-->
             <%#end%>
           </td>
-          <td>
+          <td class="center">
             <%if entry.status %>
               <%= entry.status %></td>
             <% else %>

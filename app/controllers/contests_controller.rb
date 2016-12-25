@@ -5,7 +5,7 @@ class ContestsController < ApplicationController
   # GET /contests.json
   def index
     #@user=User.find(params[:user_id])
-    @homeentries = Entry.recent
+    @homeentries = Entry.by_status('Approved').recent
     @contests = Contest.by_status('Active').where("end_date >= ?", Time.zone.now.beginning_of_day)
     @megacontests = Contest.by_status('Active').where("end_date >= ?", Time.zone.now.beginning_of_day).where("contest_type = ?","Mega")
     @monthlycontests = Contest.by_status('Active').where("end_date >= ?", Time.zone.now.beginning_of_day).where("contest_type = ?","Monthly")

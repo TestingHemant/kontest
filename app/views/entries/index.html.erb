@@ -59,7 +59,11 @@
             <%#end%>
           </td>
           <td><%= entry.status %></td>
-          <td><%= entry.rejected_reason %></td>
+          <td>
+            <% if entry.rejected_reason!="Select Reason" %>
+              <%= entry.rejected_reason %>
+            <%end%>
+          </td>
           <td>
             <%= link_to 'Show', entry %><br>
             <% if current_user.admin? %>

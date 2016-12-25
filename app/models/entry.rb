@@ -9,6 +9,7 @@ class Entry < ActiveRecord::Base
   validates :mobile, length:{ minimum: 10 }
 
   scope :recent, -> {order("entries.created_at DESC")}
+  scope :by_status, -> status { where(status: status) }
 
   	has_attached_file :image, styles: { medium: "300x300", thumb: "100x100" }
   	validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
