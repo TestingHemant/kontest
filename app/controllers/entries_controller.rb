@@ -9,6 +9,17 @@ class EntriesController < ApplicationController
     #@entries = Entry.all
   end
 
+  def conentries
+    if params[:search]
+        @contests = Contest.search(params[:search]).order("created_at DESC")
+        if @contests == ""
+          flash[:notice] = "Contests not found, please check id"
+        end
+    end
+    #@entries = Entry.where('contest_id = ?',params[:search]).limit(20)
+    @conentries = Entry.where('contest_id = ?', params[:search]).paginate(:page=>params[:page],:per_page=>10).recent
+  end
+
   def entrylist
     if current_user && current_user.admin?
       @entries = Entry.paginate(:page=>params[:page],:per_page=>10).recent

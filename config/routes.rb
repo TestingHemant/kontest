@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     member do
       post 'upvote'
       post 'overide'
+      post 'testupvote'
     end
   end
   
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
   get "/admin" => "users#admin"
   get "/contestlist" => "contests#contestlist"
   get "/entrylist" => "entries#entrylist"
+  get "/conentries" => "entries#conentries"
   get "/userlist" => "users#userlist"
   get "/users/edit/:id" => "users#edit"
   get "/winners" => "results#winners"

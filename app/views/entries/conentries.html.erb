@@ -1,11 +1,33 @@
-<div class="col s12 m12 l12">
-  <p id="notice"><%= notice %></p>
+<div class="col s12 m12 l12 center">
+  <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
+    <div class="col s12 m10 l10">
+    <% if notice %>
+      <p id="notice"><%= notice %></p>
+    <% end %>
+    </div>
+  <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
 </div>
 <div class="col hide-on-small-and-below m1 l1">&nbsp;</div>
-<div class="col s12 m10 l10">
+<div class="col s12 m10 l10 condesc" style="font-size:14px;">
   <div class="center">
-    <h5>Entries</h5><% if current_user.admin? %><%= link_to "Admin Panel","/admin" %><%end%>
+    <h5>Find By Contest Id</h5>
+    <hr>
+    <div class="col s3 m3 l3">&nbsp;</div>
+    <div class="col s6 m6 l6">
+      <%= form_tag(conentries_path, :method => "get", id: "search-form") do %>
+        <div class="col s6 m6 l6">
+          <%= text_field_tag :search, params[:search], placeholder: "Enter Contest ID" %>
+        </div>
+        <div class="col s6 m6 l6 left-align">
+          <%= submit_tag "Search", :class=>"btn" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col s3 m3 l3">&nbsp;</div>
   </div>
+  <div class="col s12 m12 l12 center" style="margin-top:5%;">
+    <% if @contests.present? %>
+      <%#= render "results/winnerlist" %>
   <div class="condesc">
   <table class="table-responsive bordered highlight">
     <thead>
@@ -21,15 +43,15 @@
     </thead>
 
     <tbody class="krtext">
-      <% @entries.each do |entry| %>
+      <% @conentries.each do |entry| %>
         <tr>
           <td>
             <%#= entry.contest.title %>
-            <%= image_tag(entry.contest.image,:class=>'responsive-img') %>
+            <%= image_tag(entry.contest.image.url(:thumb),:class=>'responsive-img') %>
           </td>
           <td>
             <%if entry.image %>
-              <%= image_tag(entry.image, :class=>"relatedimg responsive-image") %>
+              <%= image_tag(entry.image.url(:thumb), :class=>"relatedimg responsive-image") %>
             <%else%>
               <p>No Image</p>
             <%end%>
@@ -83,8 +105,14 @@
   <br>
   <%#= link_to 'Add Entry', new_entry_path,:class=>"center btn waves-effect waves-light"  %>
 </div>
+    <% else %>
+      <p class="center red-text">
+        Please enter valid contest id to find top entries.<%#= params[:search] %>.
+      </p>
+    <% end %>
+  </div>
 </div>
 <div class="col s12 m10 l10 pagination" style="text-align:right">
-   <%= will_paginate @entries, renderer: BootstrapPagination::Rails %>
+   <%= will_paginate @conentries, renderer: BootstrapPagination::Rails %>
 </div>
 <div class="col hide-on-small-and-below m1 l1">&nbsp;</div>

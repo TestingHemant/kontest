@@ -38,16 +38,18 @@
 	</div-->
 	<table class="table-bordered sortable">
 	<tr>
-		<th width="10%">ContestType</th>
-		<th width="20%">Contest Title</th>
+		<th width="5%">ID</th>
+		<th width="10%">Type</th>
+		<th width="15%">Contest Title</th>
 		<th width="30%">Entry Details</th>
 		<th width="10%">Vote Count</th>
-		<th width="10%">Contest Status</th>
-		<th width="20%">Contest Dates</th>
+		<th width="10%">Status</th>
+		<th width="20%">Dates</th>
 	</tr>
 	<% @votes.each do |votes| %>
 	<tr>
-		<td><%= votes.entry.contest.contest_type %> (<%= link_to votes.entry.contest.id, "/contests/#{votes.entry.contest.id}" %>)</td>
+		<td><%= link_to votes.entry.contest.id, "/contests/#{votes.entry.contest.id}" %></td>
+		<td><%= votes.entry.contest.contest_type %></td>
 		<td><%= votes.entry.contest.title %></td>
 		<td>
 			<span style="color:grey;">Caption: </span><%= link_to votes.entry.caption, "/entries/#{votes.entry.id}" %><br>
