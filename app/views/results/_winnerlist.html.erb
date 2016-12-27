@@ -2,14 +2,18 @@
 <p>
 	<b>Top entries</b>(max 20)<b> for <%= contest.title.camelize %> (Contest-Id: <%= link_to(contest.id,contest_path(contest.id)) %>) are:</b>
 </p>
-	<table class="table-responsive table-bordered" style="padding:5px;">
+	<table class="table-responsive table-bordered sortable	" style="padding:5px;">
 		<tr>
-			<th width="30%">Entry</th>
-			<th width="30%">Participant</th>
-			<th width="30%">Total Votes</th>
+			<th width="13%">Winner Places</th>
+			<th width="31%">Entry</th>
+			<th width="31%">Participant Email</th>
+			<th width="25%">Total Votes</th>
 		</tr>		
-		<% @entries.each do |entry| %>
+		<% @entries.each_with_index do |entry, i| %>
 		<tr>
+			<td class="center">
+				<%= (i+1) %>
+			</td>
 			<td>
 				<%= link_to(image_tag(entry.image.url(:thumb)),entry_path(entry.id)) %>
 				<%#= image_tag(entry.image, :class=> :medium) %>
@@ -18,7 +22,11 @@
 				<%= entry.user.name %>
 			</td>
 			<td>
-				<%= entry.votes.count %>		
+				<%# if entry.entryvotes.blank? %>
+					<%= entry.vote_count %>		
+				<%#else%>
+					<%#= entry.entryvotes %>
+				<%# end -%>
 			</td>
 		</tr>
 		<% end -%>
