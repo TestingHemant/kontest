@@ -26,6 +26,15 @@
 <div class="col s12 m12 l12 center">
   <p id="notice"><%= notice %></p>
 </div>
+<% if @contest.end_date <= Time.zone.now %>
+<div class="col s12 m12 l12 center">
+  <div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
+  <div class="col s12 m8 l8 center ended" style="">  
+    This Contest has Ended. Click <a href="/">here</a> for ongoing contests.
+  </div>
+  <div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
+</div>
+<%end%>
 <div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
 <div class="col s12 m8 l8" style="">  
   <div class="col s12 m12 l12">
@@ -67,10 +76,15 @@
           <% end %>
       </p>
       <hr>
-      <p class="">
-        Contest closes in <br><div id="timer"></div>
-      </p>
+      <% if @contest.end_date <= Time.zone.now %>
+        
+      <%else%>
+        <p class="">
+          Contest closes in <br><div id="timer"></div>
+        </p>
+      <%end%>
     </div>
+    <% if @contest.end_date >= Time.zone.now %>
     <div class="partform condesc">
       <% if error %>
         <div class="center error_message">
@@ -116,6 +130,7 @@
         </div>
       <% end %>
     </div>
+    <%end%>
   </div>
 </div>
 <div class="col hide-on-small-and-below m2 l2">&nbsp;</div>

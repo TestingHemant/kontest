@@ -6,11 +6,11 @@ class ContestsController < ApplicationController
   def index
     #@user=User.find(params[:user_id])
     @homeentries = Entry.by_status('Approved').recent
-    @contests = Contest.by_status('Active').where("end_date >= ?", Time.zone.now.beginning_of_day)
-    @megacontests = Contest.by_status('Active').where("end_date >= ?", Time.zone.now.beginning_of_day).where("contest_type = ?","Mega")
-    @monthlycontests = Contest.by_status('Active').where("end_date >= ?", Time.zone.now.beginning_of_day).where("contest_type = ?","Monthly")
-    @weeklycontests = Contest.by_status('Active').where("end_date >= ?", Time.zone.now.beginning_of_day).where("contest_type = ?","Weekly")
-    @dailycontests = Contest.by_status('Active').where("end_date >= ?", Time.zone.now.beginning_of_day).where("contest_type = ?","Daily")
+    @contests = Contest.by_status('Active').where("end_date >= ?", Time.zone.now)
+    @megacontests = Contest.by_status('Active').where("end_date >= ?", Time.zone.now).where("contest_type = ?","Mega")
+    @monthlycontests = Contest.by_status('Active').where("end_date >= ?", Time.zone.now).where("contest_type = ?","Monthly")
+    @weeklycontests = Contest.by_status('Active').where("end_date >= ?", Time.zone.now).where("contest_type = ?","Weekly")
+    @dailycontests = Contest.by_status('Active').where("end_date >= ?", Time.zone.now).where("contest_type = ?","Daily")
     
     if @contests.blank?
       render "shared/nocontest"
