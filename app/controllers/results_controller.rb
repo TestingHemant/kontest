@@ -4,7 +4,7 @@ class ResultsController < ApplicationController
 
 	def index
 		@votes = Vote.group("entry_id")
-		@entry=Entry.all
+		@entry=Entry.paginate(:page=>params[:page],:per_page=>10).recent
 	end
 
 	def winners

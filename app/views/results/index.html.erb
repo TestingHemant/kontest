@@ -77,4 +77,7 @@
 	<% end %>
 	</table>
 </div>
+<div class="col s12 m10 l10 pagination" style="text-align:right">
+   <%= will_paginate @entry, renderer: BootstrapPagination::Rails %>
+</div>
 <div class="col hide-on-small-and-below m1 l1">&nbsp;</div>
