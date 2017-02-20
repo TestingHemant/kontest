@@ -30,6 +30,11 @@
     <span class="col m3 l3">&nbsp;</span>
   </div>
   <div class="form-group">
+    <%= f.label :keywords,:class=>"control-label col m3 l3" %>
+    <%= f.text_field :keywords,:class=>"form-control col m6 l6" %>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group">
     <%= f.label :description,:class=>"control-label col m3 l3" %>
     <%= f.text_area :description,:class=>"form-control col m6 l6",:size =>"20x10" %>
     <span class="info">(HTML format accepted.)</span>
