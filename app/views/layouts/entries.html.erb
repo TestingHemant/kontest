@@ -16,7 +16,7 @@
   <% if yield(:meta_description).present? %>
     <meta name="description" content="<%= yield(:meta_description) %>" />
   <% else %>
-    <meta name='description' content='GeT cRaZy GeT pRiZes. Cross the line, redefine, lose your mind and get crazy for this time.Participate in our contest and get a chance to win.'/>
+    <meta name='description' content='Latest entries on krazykontest.com'/>
   <% end %>
   <% if yield(:meta_keywords).present? %>
     <meta name="keywords" content="<%= yield(:meta_keywords) %>" />
@@ -31,6 +31,11 @@
   <meta name='identifier-URL' content='http://www.krazykontest.com'>
   <!--meta property=“og:image” content='http://krazykontest.com/assets/logo/KrazyKontest.png'-->
   <meta name="google-site-verification" content="E7-XuYKm1EfX_zWIR1Bs-m0xCGHsqi9cMQhcuhrcILA" />
+  <meta property="og:title" content="<%= @entry.caption %>" />
+<meta property="og:url" content="http://www.krazykontest.com/entries/67" />
+<meta property="og:image" content="http://www.krazykontest.com<%= @entry.image.url%>" />
+<meta property="og:description" content="<%= @entry.caption %>" />
+<meta property="og:site_name" content="http://www.krazykontest.com" />
 </head>
 <body>
 <div id="main-container" class="container-flex">

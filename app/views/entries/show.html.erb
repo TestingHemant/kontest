@@ -1,10 +1,14 @@
-<!--head>
-<meta property="og:title" content="<%= @entry.caption %>" />
-<meta property="og:url" content="http://localhost:4001<%= entry_path(@entry)%>" />
-<meta property="og:image" content="http://localhost:4001<%= @entry.image.url%>" />
-<meta property="og:description" content="<%= @entry.caption %>" />
-<meta property="og:site_name" content="http://www.krazykontest.com" />
-</head-->
+<% meta_description @entry.caption.truncate(150, separator: ' ') %>
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=679404752227654";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
 <script type="text/javascript">
   $("#vote").click(function(){
         $("#vote").hide();
@@ -38,7 +42,9 @@
       Participant Name : <b><%= @entry.user.name %></b>
     </div>
     <div class="col s12 m6 l6" style="text-align:right">
-      <%= social_share_button_tag("Share on Facebook", :url=>"http://www.krazykontest.com/entries/#{@entry.id}", :image=>"http://www.krazykontest.com#{@entry.image}", desc: @entry.caption) %>
+      <%#= social_share_button_tag("Share on Facebook", :url=>"http://www.krazykontest.com/entries/#{@entry.id}",:image=>"http://localhost:4001/#{image_tag(@entry.image)}", desc: @entry.caption) %>
+      <!--div class="fb-share-button" data-href="http://www.krazykontest.com/entries/67" data-layout="button_count" data-size="small" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.krazykontest.com%2Fentries%2F67&amp;src=sdkpreparse">Share</a></div-->
+      <div class="fb-share-button" data-layout="button_count" data-size="small" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" >Share</a></div>
       <!--Shares : <%# if @entry.shares %> <%=@entry.shares %><%#else%>No Shares<%#end%>-->
     </div>
   </div>
