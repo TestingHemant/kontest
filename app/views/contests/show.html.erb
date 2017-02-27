@@ -1,8 +1,38 @@
 <% title @contest.title %>
 <% meta_description @contest.description.truncate(150, separator: ' ') %>
 <% meta_keywords @contest.keywords %>
+<style type="text/css">
+  .loadsdkdjing{
+    width:150px;
+    height:150px;
+    margin:10px;
+    float:left;
+   }
+</style>
 
 <script type="text/javascript">
+    $( document ).ready(function(){
+      $(submitentry).click(function(){
+        //sleep(50000);
+        setTimeout(ShowLoading(),500000);
+      })
+    });
+    function ShowLoading(e) {
+        var div = document.createElement('div');
+        var img = document.createElement('img');
+        img.src = '/assets/spin.gif';
+        div.innerHTML = "Please Wait...<br />";
+        div.style.cssText = 'position: fixed; top: 5%; left: 40%; z-index: 5000; width: 422px; text-align: center;background: #EDDBB0; border: 1px solid #000';
+        div.appendChild(img);
+        document.body.appendChild(div);
+        return true;
+        // These 2 lines cancel form submission, so only use if needed.
+        //window.event.cancelBubble = true;
+        //e.stopPropagation();
+    }
+</script>
+<script type="text/javascript">
+
   function onlyNos(e, t) {
             try {
                 if (window.event) {
@@ -27,6 +57,7 @@
 <!--script src="/assets/js/libs/jquery.js"></script>
 <script src="flipclock.min.js"></script>
 <script src="/assets/javascripts/countdown.js"></script-->
+<!--div class="loading center" style="display:inline;"><%#= image_tag("loading.gif")%></div-->
 <div class="col s12 m12 l12 center">
   <p id="notice"><%= notice %></p>
 </div>
@@ -126,7 +157,7 @@
             <span class="col m3 l3">&nbsp;</span>
           </div>
           <div class="actions center">
-            <%= f.submit 'Enter', :class=>"btn waves-effect waves-light"%>
+            <%= f.submit 'Enter', :class=>"btn waves-effect waves-light",:id=>'submitentry'%>
           </div>
           <div class="center" style="margin-top:2%;">
             *By clicking enter you agree to our terms and conditions<br>We don't share your data. Read our privacy statement <a href='#'>here</a>
