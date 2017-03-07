@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
   #before_action :authenticate_user!#, :except => [:index]
   private
 
+  def record_not_found
+    flash[:notice] = "No Such page found"
+    redirect_to "/"    
+  end
 	#def current_user
 	  #@current_user ||= User.find_by(id: session[:user_id])
 	 # @current_user ||= User.find(session[:user_id]) if session[:user_id]
