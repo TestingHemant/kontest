@@ -12,10 +12,12 @@
 
 <script type="text/javascript">
     $( document ).ready(function(){
-      $(submitentry).click(function(){
+      //$(submitentry).click(function(){
+
         //sleep(50000);
-        setTimeout(ShowLoading(),500000);
-      })
+        //setTimeout(ShowLoading(),500000);
+      //})
+     
     });
     function ShowLoading(e) {
         var div = document.createElement('div');
@@ -129,6 +131,7 @@
       <div class="center">
         <h5>Participate Now</h5>
       </div>
+      <%#= render "common/spinner" %>
       <%= form_for([@contest, @contest.entries.build], html: {class: "custom-form"}) do |f| %>
         <div class="form-horizontal">
           <div class="form-group">
@@ -157,7 +160,7 @@
             <span class="col m3 l3">&nbsp;</span>
           </div>
           <div class="actions center">
-            <%= f.submit 'Enter', :class=>"btn waves-effect waves-light",:id=>'submitentry'%>
+            <%= f.button 'Enter', :class=>"btn waves-effect waves-light",:id=>'submitentry', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> SUbmitting Entry..."}%>
           </div>
           <div class="center" style="margin-top:2%;">
             *By clicking enter you agree to our terms and conditions<br>We don't share your data. Read our privacy statement <a href='#'>here</a>
