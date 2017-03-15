@@ -6,7 +6,7 @@
       <%= yield(:title) %>
     <%else%>
       Krazy Kontest - Participate in our contest and get a chance to win.
-    <%end%>    
+    <%end%>
   </title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -27,13 +27,10 @@
   <meta name='language' content='ES'/>
   <meta name='robots' content='index,follow' />
   <meta name='designer' content='11D Technologies, http://www.11d.co' />
-  <meta name='url' content='http://www.krazykontest.com' />
-  <meta name='identifier-URL' content='http://www.krazykontest.com'>
-  <!--meta property=“og:image” content='http://krazykontest.com/assets/logo/KrazyKontest.png'-->
+  <meta name='url' content='http://www.krazykontest.com/entries/<%= @entry.id %>' />
   <meta name="google-site-verification" content="E7-XuYKm1EfX_zWIR1Bs-m0xCGHsqi9cMQhcuhrcILA" />
   <meta property="og:title" content="<%= @entry.caption %>" />
-<meta property="og:url" content="http://www.krazykontest.com/entries/67" />
-<meta property="og:image" content="http://www.krazykontest.com<%= @entry.image.url%>" />
+<meta property="og:url" content="http://www.krazykontest.com/entries/<%= @entry.id%>" />
 <meta property="og:description" content="<%= @entry.caption %>" />
 <meta property="og:site_name" content="http://www.krazykontest.com" />
 </head>
