@@ -24,7 +24,7 @@ class ContestsController < ApplicationController
   end
 
   def contestlist
-    #@program = Program.paginate(:page=>params[:page],:per_page=>10).by_status('active').recent  
+    #@contest = Program.paginate(:page=>params[:page],:per_page=>10).by_status('active').recent  
     if current_user && current_user.admin?
       @contests = Contest.paginate(:page=>params[:page],:per_page=>10).recent
     else
@@ -82,7 +82,7 @@ class ContestsController < ApplicationController
   def update
     respond_to do |format|
       if @contest.update(contest_params)
-        format.html { redirect_to @contest, notice: 'Contest was successfully updated.' }
+        format.html { redirect_to "@contest", notice: 'Contest was successfully updated.' }
         format.json { render :show, status: :ok, location: @contest }
       else
         format.html { render :edit }
@@ -94,24 +94,25 @@ class ContestsController < ApplicationController
   # DELETE /contests/1
   # DELETE /contests/1.json
   def destroy
-    @contest=Contest.find(params[:id])
-    #@contest.destroy
-    begin
-      respond_to do |format|
-        if @contest.update_attributes(:status=>"deleted")
-          format.html { redirect_to :back, notice: 'Contest removed successfully.' }
-          format.json { head :no_content }
-        else
-          flash[:notice] = "Can not be removed"
-          redirect_to :back
-          #format.json {render json: @contest.errors, status: :unprocessable_entity}
-          #redirect_to recruiter_root_path, :flash => {:error => "Something Went Wrong"}  
-        end
+  @contest = Contest.find(params[:id])
+  begin
+    #respond_to do |format|
+      if @contest.update_attribute(:status, "deleted")
+        flash[:notice] = "#{@contest.title} deleted Successfully"
+        redirect_to "/contestlist"
+        #format.html { redirect_to "/contestlist", notice: 'Contest Removed Successfully.' }
+        #format.json { head :no_content }        
+      else
+        flash[:notice] = "Error while processing"
+        redirect_to "/contestlist"
+        #format.json {render json: @contest.errors, status: :unprocessable_entity}
+        #redirect_to "/contestlist", :flash => {:notice => "Something Went Wrong"}
       end
-    rescue ActiveRecord::RecordNotFound => e
-      redirect_to :back
-    end
+    #end
+  rescue ActiveRecord::RecordNotFound => e
+      redirect_to "/contestlist", :flash => {:notice => "Something Went Wrong"}
   end
+ end
 
 
   private

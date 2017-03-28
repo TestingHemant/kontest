@@ -56,7 +56,7 @@
               <%= entry.entryvotes %>
             <%else%>
               <%if entry.votes %>
-                <%= entry.votes.count %>
+                <%= entry.votes.count + entry.entryvotes.to_i %>
               <%else%>
                 <p>No Votes yet</p>
               <%end%>

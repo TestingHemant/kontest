@@ -76,7 +76,7 @@
                 <p>No Votes yet</p>
               <%end%>
             <%else%>
-              <%= entry.entryvotes %>
+              <%= entry.entryvotes.to_i + entry.votes.count %>
             <% end -%>
             <%#if entry.shares %>
               <%#= entry.shares.to_s %>

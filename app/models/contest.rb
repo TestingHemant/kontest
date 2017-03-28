@@ -3,7 +3,7 @@ class Contest < ActiveRecord::Base
 	belongs_to :users
 	validates :title,:description,:steps, :presence => true
 	validates :first_prize, :presence => true
-	validates_uniqueness_of :contest_type, scope: :status #if: :same_status?
+	validates_uniqueness_of :contest_type, scope: :status, conditions: -> {where(status:["Active"])} #if: :same_status?
 	validate :validate_contest_type
 
 	scope :by_status, -> status { where(status: status) }
@@ -26,6 +26,6 @@ class Contest < ActiveRecord::Base
 
 	has_attached_file :image, styles: { medium: "300x300", thumb: "100x100" }
   	validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-  	validates_attachment_file_name :image, matches: [/png\Z/, /jpe?g\Z/]
+  	validates_attachment_file_name :image, matches: [/png\Z/, /jpe?g\Z/, /JPE?G\Z/]
   	validates :image, :presence => true
 end

@@ -53,15 +53,19 @@
             <%= entry.email %>
           </td>
           <td>
-            <%if entry.entryvotes %>
-              <%= entry.entryvotes %>
-            <%else%>
-              <%if entry.votes %>
-                <%= entry.votes.count %>
-              <%else%>
-                <p>No Votes yet</p>
-              <%end%>
-            <%end%>
+            Actual Votes : <span style="color:green;"><%= entry.votes.count %></span><br>
+            Overridden To: <span style="color:green;"><%= entry.entryvotes %></span><br>
+            Total Votes  : <span style="color:green;"><b><%= entry.entryvotes.to_i + entry.votes.count %></b></span>
+
+            <%#if entry.entryvotes %>
+              <%#= entry.entryvotes %>
+            <%#else%>
+              <%#if entry.votes %>
+                <%#= entry.votes.count %>
+              <%#else%>
+                <!--p>No Votes yet</p-->
+              <%#end%>
+            <%#end%>
             <%#if entry.shares %>
               <%#= entry.shares.to_s %>
             <%#else%>
@@ -69,7 +73,11 @@
             <%#end%>
           </td>
           <td><%= entry.status %></td>
-          <td><%= entry.rejected_reason %></td>
+          <td>
+            <% if entry.status == 'Rejected'%>
+              <%= entry.rejected_reason %>
+            <%end%>
+          </td>
           <td>
             <%= link_to 'Show', entry %><br>
             <%= link_to 'Overide Votes', edit_entry_path(entry) %><br>
