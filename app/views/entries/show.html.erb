@@ -54,10 +54,7 @@
       Participant Name : <b><%= @entry.user.name %></b>
     </div>
     <div class="col s12 m6 l6" style="text-align:right">
-      <%#= social_share_button_tag("Share on Facebook", :url=>"http://www.krazykontest.com/entries/#{@entry.id}",:image=>"http://localhost:4001/#{image_tag(@entry.image)}", desc: @entry.caption) %>
-      <!--div class="fb-share-button" data-href="http://www.krazykontest.com/entries/67" data-layout="button_count" data-size="small" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.krazykontest.com%2Fentries%2F67&amp;src=sdkpreparse">Share</a></div-->
       <div class="fb-share-button" data-layout="button_count" data-size="small" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" >Share</a></div>
-      <!--Shares : <%# if @entry.shares %> <%=@entry.shares %><%#else%>No Shares<%#end%>-->
     </div>
   </div>
   <div class="col s12 m12 l12 center" style="margin-top:2%">
