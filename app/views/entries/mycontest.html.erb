@@ -53,10 +53,10 @@
           </td>        
           <td class="center">
             <%if entry.entryvotes %>
-              <%= entry.entryvotes %>
+              <%= entry.votes.count + entry.entryvotes.to_i %>
             <%else%>
               <%if entry.votes %>
-                <%= entry.votes.count + entry.entryvotes.to_i %>
+                <%= entry.votes.count %>
               <%else%>
                 <p>No Votes yet</p>
               <%end%>

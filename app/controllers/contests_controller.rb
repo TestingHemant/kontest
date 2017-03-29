@@ -82,7 +82,7 @@ class ContestsController < ApplicationController
   def update
     respond_to do |format|
       if @contest.update(contest_params)
-        format.html { redirect_to "@contest", notice: 'Contest was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Contest was successfully updated.' }
         format.json { render :show, status: :ok, location: @contest }
       else
         format.html { render :edit }
