@@ -1,0 +1,45 @@
+CTYPE html>
+<html>
+<head>
+  <title>
+    <% if yield(:title).present? %>
+      <%= yield(:title) %> - krazykontest.com
+    <%else%>
+      Krazy Kontest - Participate in our contest and get a chance to win.
+    <%end%>    
+  </title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.css">
+<!--link rel="stylesheet" href="/assets/flipclock.css"-->
+  <%= csrf_meta_tags %>
+  <% if yield(:meta_description).present? %>
+    <meta name="description" content="<%= yield(:meta_description) %>" />
+  <% else %>
+    <meta name='description' content='Latest entries on krazykontest.com'/>
+  <% end %>
+  <% if yield(:meta_keywords).present? %>
+    <meta name="keywords" content="<%= yield(:meta_keywords) %>" />
+  <% else %>
+    <meta name='keywords' content='Krazy Kontest, crazy contest, contest, win contest, prizes, participate'/>
+  <% end %>
+  <meta name='copyright' content='Illusion Studios' />
+  <meta name='language' content='ES'/>
+  <meta name='robots' content='index,follow' />
+  <meta name='designer' content='11D Technologies, http://www.11d.co' />
+<meta property="og:site_name" content="http://www.krazykontest.com" />
+</head>
+<body>
+<div id="main-container" class="container-flex">
+        <div class="row">
+                <%= render "layouts/header_new" %>
+        </div>
+        <div class="row page-wrap">
+                <%= yield %>
+        </div>
+        <div class="row site-footer">
+                <%= render "layouts/footer" %>
+        </div>
+</div>
+</body>
+
