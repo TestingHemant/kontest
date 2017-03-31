@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       post 'testupvote'
     end
   end
+
+  match '*path' => 'errors#error_404', via: :all
   
   resources :results 
   #resources :users do
