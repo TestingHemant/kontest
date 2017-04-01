@@ -13,8 +13,6 @@ Rails.application.routes.draw do
       post 'testupvote'
     end
   end
-
-  match '*path' => 'errors#error_404', via: :all
   
   resources :results 
   #resources :users do
@@ -50,6 +48,14 @@ Rails.application.routes.draw do
   resources :contests do
     resources :entries
   end
+
+
+
+  match '*path' => 'errors#error_404', via: :all
+
+
+
+  
   #For FB login
   #devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
   #match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
