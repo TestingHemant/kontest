@@ -35,10 +35,10 @@
     <div class="center">
       <%= image_tag(@entry.image,:class=>'responsive-img center',:"max-width"=>'100%') %>
     </div>
-    <div class="col s12 m6 l6" style="margin-top:2%">
+    <div class="col s12 m9 l9" style="margin-top:2%">
       Caption : <b><%= @entry.caption %></b>
     </div>
-    <div class="col s12 m6 l6" style="margin-top:2%;text-align:right">
+    <div class="col s12 m3 l3" style="margin-top:2%;text-align:right">
       <%if @entry.entryvotes %>
         <%= pluralize(@entry.entryvotes.to_i + @entry.votes.count,"vote") %>
       <%else%>
@@ -50,10 +50,10 @@
         <span style="color:red;">Contest Closed</span>
       <%end%>
     </div>
-    <div class="col s12 m6 l6">
+    <div class="col s12 m l9">
       Participant Name : <b><%= @entry.user.name %></b>
     </div>
-    <div class="col s12 m6 l6" style="text-align:right">
+    <div class="col s12 m3 l3" style="text-align:right">
       <div class="fb-share-button" data-layout="button_count" data-size="small" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" >Share</a></div>
     </div>
   </div>
