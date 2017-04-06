@@ -15,9 +15,6 @@
     <%= link_to(image_tag("logo/KrazyKontest.png",:class=>"logo"),"/") %>
     <a href="#" data-activates="mobile-demo" class="button-collapse blue-text"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
-    <li style="padding-top:5%;">
-    <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fkrazykontests%2F&width=106&layout=button_count&action=like&size=small&show_faces=true&share=true&height=46&appId=679404752227654" width="106" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-    </li>
     
       <% if user_signed_in? %>
         <li>
@@ -34,6 +31,9 @@
       <% else %>
           <li><%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, :class=>"btn waves-effect waves-light" %></li>          
       <% end %>
+      <li style="padding-top:5%;">
+        <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fkrazykontests%2F&width=106&layout=button_count&action=like&size=small&show_faces=true&share=true&height=46&appId=679404752227654" width="106" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+      </li>
     </ul>
     <ul class="side-nav" id="mobile-demo">
       <% if user_signed_in? %>
