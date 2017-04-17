@@ -1,6 +1,7 @@
 <DOCTYPE html>
 <html>
 <head>
+  <%= yield :head %>
   <title>
     <% if yield(:title).present? %>
       <%= yield(:title) %> - krazykontest.com
