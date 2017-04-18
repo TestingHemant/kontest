@@ -14,7 +14,7 @@ class ResultsController < ApplicationController
 		    if @contests == ""
 		    	flash[:notice] = "Contests not found, please check id"
 		    else
-		    	@entries = Entry.find_by_sql("SELECT e.*, if(e.entryvotes is NULL, count(v.id), e.entryvotes + count(v.id)) as vote_count from entries e inner join votes v on e.id = v.entry_id where e.contest_id=#{params[:search]} group by e.id order by vote_count DESC limit 20")
+		    	@entries = Entry.find_by_sql("SELECT e.*, if(e.entryvotes is NULL, count(v.id), e.entryvotes + count(v.id)) as vote_count from entries e inner join votes v on e.id = v.entry_id where e.contest_id=#{params[:search]} and e.status = 'Approved' group by e.id order by vote_count DESC limit 20")
 		    	if !@entries
 					flash[:notice] = "No Entries found"
 				end
