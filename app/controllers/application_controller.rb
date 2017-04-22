@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   rescue_from ActionController::UnknownController, :with => :record_not_found
   rescue_from ActionController::InvalidAuthenticityToken, with: :redirect_to_referer_or_path
+  rescue_from ActionController::StatementInvalid, :with => :ISE
   #rescue_from ActiveRecord::PendingMigrationError, :with => :migration_pending
 
   protect_from_forgery with: :exception
@@ -13,6 +14,10 @@ class ApplicationController < ActionController::Base
 
   def record_not_found
     render "pages/404"
+  end
+
+  def ISE
+    render "pages/502"
   end
   
   def migration_pending
