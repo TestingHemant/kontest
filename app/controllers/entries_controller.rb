@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
   before_action :set_entry, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!#, except: :show
+  before_action :authenticate_user!, except: :show
   layout "entry", only: [:show]
   # GET /entries
   # GET /entries.json

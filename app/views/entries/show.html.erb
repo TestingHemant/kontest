@@ -2,10 +2,12 @@
 <% meta_description @entry.caption.truncate(150, separator: ' ') %>
 <% content_for :head do %>
    <meta name='url' content='http://www.krazykontest.com/entries/<%= @entry.id %>' />
-   <meta name="google-site-verification" content="E7-XuYKm1EfX_zWIR1Bs-m0xCGHsqi9cMQhcuhrcILA" />
-   <meta property="og:title" content="<%= @entry.caption %>" />
-   <meta property="og:url" content="http://www.krazykontest.com/entries/<%= @entry.id%>" />
-   <meta property="og:description" content="<%= @entry.caption %>" />
+   <meta property="fb:app_id" content="679404752227654" />
+    <meta name="google-site-verification" content="E7-XuYKm1EfX_zWIR1Bs-m0xCGHsqi9cMQhcuhrcILA" />
+    <meta property="og:title" content="<%= @entry.caption %>" />
+    <meta property="og:url" content="http://www.krazykontest.com/entries/<%= @entry.id%>" />
+    <meta property="og:description" content="<%= @entry.caption %>" />
+    <meta property="og:image" content='<%= @entry.image %>' />
 <%end%>
 <div id="fb-root"></div>
 <script>
@@ -45,7 +47,7 @@
         <%= pluralize(@entry.votes.count, "vote") %> |  
       <%end%>      
       <% if @entry.contest.status == "Active" || @entry.contest.status == "active" %>
-        <%= link_to(image_tag("icons/Vote.png",:class=>"responsive-img",:width=>'15%'),upvote_entry_path(@entry),method: :post,:id=>"vote") %>
+        <%= link_to(image_tag("icons/Vote.png",:class=>"responsive-img",:width=>'25%'),upvote_entry_path(@entry),method: :post,:id=>"vote") %>
       <%else%>
         <span style="color:red;">Contest Closed</span>
       <%end%>
