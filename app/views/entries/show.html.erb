@@ -52,11 +52,16 @@
         <span style="color:red;">Contest Closed</span>
       <%end%>
     </div>
-    <div class="col s12 m l9">
+    <div class="col s12 m7 l7">
       Participant Name : <b><%= @entry.user.name %></b>
     </div>
-    <div class="col s12 m3 l3" style="text-align:right">
-      <div class="fb-share-button" data-layout="button_count" data-size="small" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" >Share</a></div>
+    <div class="col s12 m5 l5" style="text-align:right">
+      <div class="fb-share-button" data-layout="button_count" data-size="small" data-mobile-iframe="false">
+        <a class="fb-xfbml-parse-ignore" target="_blank" ></a>
+      </div> &nbsp;
+      <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Check my entry http://www.krazykontest.com/entries/<%= @entry.id %> &hashtags=krazykontest" data-size="large"><i class="fa fa-twitter"></i>Tweet</a> &nbsp;
+      <a class="watsapp-share-button hide-on-large-only" href="whatsapp://send?text=Hey! check my entry and please upvote, http://www.krazykontest.com/entries/<%=@entry.id%>" data-action="share/whatsapp/share"> Whatsapp</a>
+      
     </div>
   </div>
   <div class="col s12 m12 l12 center" style="margin-top:2%">
