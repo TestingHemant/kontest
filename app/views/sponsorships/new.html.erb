@@ -1,0 +1,23 @@
+<% if notice %>
+<div class="col s12 m12 l12 center">
+  <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
+    <div class="col s12 m10 l10">
+      <p id="notice"><%= notice %></p>
+    </div>
+  <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
+  <!--p id="success"><%#= success %></p-->
+</div>
+<% end %>
+<div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
+<div class="col s12 m8 l8">
+	<div class="center">
+		<h5>Contact for Sponsorship</h5>
+	</div>
+	<div>
+		<%= render 'form' %>
+	</div>
+	<div>
+		<%#= link_to 'Back', url_for(:back) %>
+	</div>
+</div>
+<div class="col hide-on-small-and-below m2 l2">&nbsp;</div>

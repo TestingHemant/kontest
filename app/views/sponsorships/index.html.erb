@@ -1,0 +1,45 @@
+<div class="col s12 m12 l12 center">
+  <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
+    <div class="col s12 m10 l10">
+    <% if notice %>
+      <p id="notice"><%= notice %></p>
+    <% end %>
+    </div>
+  <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
+  <!--p id="success"><%#= success %></p-->
+</div>
+<div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
+<div class="col s12 m8 l8" style="">  
+  <div class="col s12 m12 l12 center">
+    <h5>Recent Sponsorship Requests</h5>
+  </div>
+  <div class="col s12 m12 l12 card">
+    <table class="responsive-table bordered">
+      <thead>
+        <tr>
+          <th>Contacted By</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @sponsorships.each do |spons| %>
+          <tr>
+            <td><%= spons.name %></td>
+            <td><%= spons.email %></td>
+            <td><%= spons.phone %></td>
+            <td><%= spons.message %></td>
+            <!--td><%#= link_to 'Show', spons %></td>
+            <td><%#= link_to 'Edit', edit_spons_path(spons) %></td>
+            <td><%#= link_to 'Delete', spons, method: :delete, data: { confirm: 'Are you sure? It can\'t be restored, once deleted.' } %></td-->
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col s12 m12 l12 pagination" style="text-align:right">
+   <%= will_paginate @sponsorships, renderer: BootstrapPagination::Rails %>
+</div>
+</div>
+<div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
