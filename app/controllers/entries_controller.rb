@@ -68,9 +68,8 @@ class EntriesController < ApplicationController
       redirect_to entry_path(@entry)
       flash[:success] = "Entry submitted successfully"
       require 'msg91ruby'
-      api = Msg91ruby::API.new("155559AcDj9QWtpxN5939806a","KKONTE")
-      #api.send(9375560075, "New Test Message", 1)
-      api.send('8770245500', "Thank you, #{current_user.name},<br> for participating in our contest. <br>Here is your link <br>\"http://www.krazykontest.com#{entry_path(@entry)}\". Start collecting votes to win prizes. <br><br>Follow us fb.com/krazykontests", 4)
+      api = Msg91ruby::API.new("155559AcDj9QWtpxN5939806a","KRAZYK")
+      api.send('8770245500', "Thank you, #{current_user.name}, for participating in our contest. Here is your link \"http://www.krazykontest.com#{entry_path(@entry)}\". Start collecting votes to win prizes. Follow us fb.com/krazykontests", 4)
     else
       flash[:error] = "All fields are mandatory"
       redirect_to :back
@@ -97,19 +96,25 @@ class EntriesController < ApplicationController
   # PATCH/PUT /entries/1.json
   def update    
     respond_to do |format|
-      if @entry.update(entry_params)
-        if params[:entry][:status] = "Rejected"
+      if params[:entry][:status] == 'Rejected'
+        if @entry.update(entry_params)
           require 'msg91ruby'
-          api = Msg91ruby::API.new("155559AcDj9QWtpxN5939806a","KKONTE")
-          #api.send(9375560075, "New Test Message", 1)
-          #api.send(@entry.mobile,
-	  api.send('8770245500', "Dear participant, We are sorry to inform you that your entry is invalid. Read our description and steps properly and do participate again. Regards Krazykontest", 4)
+          api = Msg91ruby::API.new("155559AcDj9QWtpxN5939806a","KRAZYK")
+          api.send('8770245500', "Dear participant, We are sorry to inform you that your entry is invalid. Read our description and steps properly and do participate again. Regards Krazykontest", 4)
+          format.html { redirect_to "/entries", notice: 'Entry was successfully updated - Reject SMS.' }
+          format.json { render :show, status: :ok, location: @entry }
         end
-        format.html { redirect_to "/entries", notice: 'Entry was successfully updated.' }
-        format.json { render :show, status: :ok, location: @entry }
+          format.html { redirect_to "/entries", notice: 'Entry was successfully updated.' }
+          format.json { render :show, status: :ok, location: @entry }
       else
-        format.html { render :edit }
-        format.json { render json: @entry.errors, status: :unprocessable_entity }
+        params[:entry][:rejected_reason] = ""
+        if @entry.update(entry_params)
+          format.html { redirect_to "/entries", notice: 'Entry was successfully updated - No SMS.' }
+          format.json { render :show, status: :ok, location: @entry }
+        else
+          format.html { render :edit }
+          format.json { render json: @entry.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
