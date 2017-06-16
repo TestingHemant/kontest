@@ -69,7 +69,7 @@ class EntriesController < ApplicationController
       flash[:success] = "Entry submitted successfully"
       require 'msg91ruby'
       api = Msg91ruby::API.new("155559AcDj9QWtpxN5939806a","KRAZYK")
-      api.send('8770245500', "Thank you, #{current_user.name}, for participating in our contest. Here is your link \"http://www.krazykontest.com#{entry_path(@entry)}\". Start collecting votes to win prizes. Follow us fb.com/krazykontests", 4)
+      api.send(params[:entry][:mobile], "Thank you, #{current_user.name}, for participating in our contest. Here is your link \"http://www.krazykontest.com#{entry_path(@entry)}\". Start collecting votes to win prizes. Follow us fb.com/krazykontests", 4)
     else
       flash[:error] = "All fields are mandatory"
       redirect_to :back
@@ -100,7 +100,7 @@ class EntriesController < ApplicationController
         if @entry.update(entry_params)
           require 'msg91ruby'
           api = Msg91ruby::API.new("155559AcDj9QWtpxN5939806a","KRAZYK")
-          api.send('8770245500', "Dear participant, We are sorry to inform you that your entry is invalid. Read our description and steps properly and do participate again. Regards Krazykontest", 4)
+          api.send(@entry.mobile, "Dear participant, We are sorry to inform you that your entry is invalid. Read our description and steps properly and do participate again. Regards Krazykontest", 4)
           format.html { redirect_to "/entries", notice: 'Entry was successfully updated - Reject SMS.' }
           format.json { render :show, status: :ok, location: @entry }
         end
