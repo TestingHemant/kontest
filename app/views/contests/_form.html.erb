@@ -1,3 +1,16 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#conheading").hide();
+    $("#contest_contest_type").change(function () {
+        var status=this.value;
+        if(status=="Special" || status=="special"){
+          $("#conheading").show();
+        }else{
+          $("#conheading").hide();
+        }        
+    });
+  })
+</script>
 <%= form_for(@contest, html: {class: "custom-form"}) do |f| %>
   <% if @contest.errors.any? %>
     <div class="col s12 m12 l12 center">
@@ -15,13 +28,18 @@
   <div class="form-group">
     <%= f.label :contest_type,:class=>"control-label col m3 l3" %>
     <div class="col m6 l6">
-      <%= f.select :contest_type,['Select Contest Type','Mega','Monthly','Weekly','Daily'],:class=>"form-control" %>
+      <%= f.select :contest_type,['Select Contest Type','Mega','Monthly','Weekly','Daily','Special'],:class=>"form-control" %>
     </div>
     <span class="col m3 l3">&nbsp;</span>
   </div>
   <div class="form-group">
     <%= f.label :image, "Upload Banner",:class=>"control-label col m3 l3" %>
     <%= f.file_field :image,:class=>"col m6 l6" %>
+    <span class="col m3 l3">&nbsp;</span>
+  </div>
+  <div class="form-group" id="conheading">
+    <%= f.label :conheading, "Contest Heading", :class=>"control-label col m3 l3" %>
+    <%= f.text_field :conheading,:class=>"form-control col m6 l6" %>
     <span class="col m3 l3">&nbsp;</span>
   </div>
   <div class="form-group">

@@ -1,0 +1,2 @@
+module SpecialcontestHelper
+end

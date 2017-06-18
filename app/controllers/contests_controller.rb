@@ -123,6 +123,6 @@ class ContestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contest_params
-      params.require(:contest).permit(:title, :keywords,:contest_type, :banner, :image, :description, :steps, :first_prize, :second_prize, :third_prize, :status, :suspension_reason, :start_date, :end_date,:user_id)
+      params.require(:contest).permit(:title, :keywords,:contest_type, :banner, :image, :description, :steps, :first_prize, :second_prize, :third_prize, :status, :suspension_reason, :start_date, :end_date,:user_id,:conheading)
     end
 end

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  resources :specialcontests
+
   resources :sponsorships
 
   resources :problems
