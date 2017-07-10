@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  before_action :store_current_location, :unless => :devise_controller?
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   rescue_from ActionController::UnknownController, :with => :record_not_found
   rescue_from ActionController::InvalidAuthenticityToken, with: :redirect_to_referer_or_path
@@ -30,6 +31,9 @@ class ApplicationController < ActionController::Base
     redirect_to request.referer
   end
 
+  def store_current_location
+    store_location_for(:user, request.url)
+  end
 	#def current_user
 	  #@current_user ||= User.find_by(id: session[:user_id])
 	 # @current_user ||= User.find(session[:user_id]) if session[:user_id]

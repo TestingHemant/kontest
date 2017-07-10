@@ -47,15 +47,19 @@
         <%= pluralize(@entry.votes.count, "vote") %> |  
       <%end%>      
       <% if @entry.contest.status == "Active" || @entry.contest.status == "active" %>
-        <%= link_to(image_tag("icons/Vote.png",:class=>"responsive-img",:width=>'25%'),upvote_entry_path(@entry),method: :post,:id=>"vote") %>
+        <% if !user_signed_in? %>
+          <%= link_to "Login to Vote", user_facebook_omniauth_authorize_path,:class=>"logbutton" %> 
+        <%else%>
+          <%= link_to(image_tag("icons/Vote.png",:class=>"responsive-img",:width=>'25%'),upvote_entry_path(@entry),method: :post,:id=>"vote") %>
+        <%end%>
       <%else%>
         <span style="color:red;">Contest Closed</span>
       <%end%>
     </div>
-    <div class="col s12 m7 l7">
+    <div class="col s12 m7 l7" style="margin-top:10px;">
       Participant Name : <b><%= @entry.user.name %></b>
     </div>
-    <div class="col s12 m5 l5" style="text-align:right">
+    <div class="col s12 m5 l5" style="text-align:right;margin-top:10px;">
       <div class="fb-share-button" data-layout="button_count" data-size="small" data-mobile-iframe="false">
         <a class="fb-xfbml-parse-ignore" target="_blank" ></a>
       </div> &nbsp;
