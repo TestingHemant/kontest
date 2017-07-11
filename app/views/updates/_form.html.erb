@@ -1,0 +1,58 @@
+<div class="col hide-on-small-and-below m2 l2">&nbsp;</div>
+<div class="col s12 m8 l8">
+  <% if notice %>
+      <p id="notice"><%= notice %></p>
+  <% end %>
+  <div class="center">
+    <h5>Add/Edit Winners</h5><%= link_to "Admin Panel","/admin" %>
+  </div>
+  <div>
+    <%= form_for(@update, html: {class: "custom-form"}) do |f| %>
+      <% if @update.errors.any? %>
+        <div class="col s12 m12 l12 center" style="margin-bottom:10px;">
+          <div id="error_explanation">
+            <h2><%= pluralize(@update.errors.count, "error") %> prohibited this update from being saved:</h2>
+
+            <ul>
+            <% @update.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+          <% if error %>
+          <div class="error_message">
+            <%= error %>
+          </div>
+          <%end%>
+        </div>
+      <% end %>
+      <div class="form-horizontal">
+        <div class="form-group">
+          <%= f.label :participant_name,:class=>"control-label col m3 l3" %>
+          <%= f.text_field :participant_name,:class=>"form-control col m6 l6" %>
+          <span class="col m3 l3">&nbsp;</span>
+        </div>
+        <div class="form-group">
+          <%= f.label :image, "Upload Image",:class=>"control-label col m3 l3" %>
+          <%= f.file_field :image,:class=>"col m6 l6" %>
+          <span class="col m3 l3">&nbsp;</span>
+        </div>
+        <div class="form-group">
+          <%= f.label :email,:class=>"control-label col m3 l3" %>
+          <%= f.email_field :email,:class=>"form-control col m6 l6" %>
+          <span class="col m3 l3">&nbsp;</span>
+        </div>
+        <div class="form-group">
+          <%= f.label :display_text,:class=>"control-label col m3 l3" %>
+          <%= f.text_area :display_text,:class=>"form-control col m6 l6",:size =>"20x5" %>
+          <span class="info">(HTML format accepted.)</span>
+          <span class="col m3 l3">&nbsp;</span>
+        </div>
+        <div class="actions center">
+          <%= f.submit "Winners",:class=>"btn waves-effect waves-light" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="col hide-on-small-and-below m2 l2">&nbsp;</div>

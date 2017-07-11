@@ -1,0 +1,94 @@
+<div class="row">
+  <div class="col s12 m12 l12 center">
+    <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
+    <div class="col s12 m10 l10">
+    <% if notice %>
+      <p id="notice"><%= notice %></p>
+    <% end %>
+    </div>
+    <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
+  </div>
+</div>
+<!-- Contest -->
+<div class="row">
+<!-- Mega Contest -->
+<% if @specialcontests.blank? %>
+  <div class="row">
+    <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
+    <div class="col s12 m10 l10">
+      <p class="nocontest center condesc">
+        No Special Contests available right now, please check other contests or visit after sometime.
+      </p>
+    </div>
+    <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
+  </div>
+<%end%>
+<% @specialcontests.each do |spcontest| %>
+  <div class="row">
+    <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
+    <div class="col s12 m10 l10">
+      <div class="row">
+        <div class="col hide-on-small-and-down m3 l3 center">&nbsp;</div>
+        <div class="col s12 m6 l6 center heading">
+          <% if spcontest.conheading? %>
+            <h4><%= spcontest.conheading %></h4>
+          <% else %>
+            <h4>Special Contest</h4>
+          <%end%>
+        </div>
+        <div class="col hide-on-small-and-down m3 l3 center">&nbsp;</div>
+      </div>
+      <div class="row">
+        <div class="col s12 m12 l12">
+          <div class="card horizontal">
+            <div class="card-image">
+                <%= image_tag(spcontest.image,:class=>'responsive-img',:width=>'60%') %>
+            </div>
+            <div class="card-stacked">
+              <div class="card-content">
+                  <p><%= spcontest.description.html_safe %></p>
+                  <p class="center">Ends - <%= spcontest.end_date.to_date %></p>
+              </div>
+              <!--div class="card-action center">
+                  <%#= link_to 'Participate Now', spcontest,:class=>"btn-large waves-effect waves-light" %>
+              </div-->
+            </div>
+          </div>      
+        </div>
+      </div>
+    </div>
+    <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
+  </div>
+<%end%>
+</div>
+<!-- Latest Entries -->
+<div class="row">
+  <div class="col hide-on-small-and-down m3 l3 center">&nbsp;</div>
+  <div class="col s12 m6 l6 center heading">
+    <h5>Latest Winners</h5>
+  </div>
+  <div class="col hide-on-small-and-down m3 l3 center">&nbsp;</div>
+</div>
+<div class="row">
+  <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
+  <div class="col s12 m10 l10">
+    <div class="DocumentList">
+      <% @updates.each do |updates| %>
+      <%# if updates.contest.contest_type == 'Special' %>
+      <div class="col s4 m3 l3 DocumentItem">
+        <div class="card">
+          <div class="card-image">
+            <%= link_to(image_tag(updates.image.url(:medium),:class=>"relatedimg responsive-img"), entry_path(updates.id)) %>
+          </div>
+          <div class="card-content center">
+            <%= updates.participant_name %><br><%= updates.display_text %>          
+          </div>
+        </div>  
+      </div>
+      <%# end %>  
+      <% end %> 
+    </div>
+  </div>
+  <div class="col hide-on-small-and-down m1 l1 center">&nbsp;</div>
+</div>
+<!-- Latest Entries End-->

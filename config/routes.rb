@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :updates
+
   resources :specialcontests
 
   resources :sponsorships
